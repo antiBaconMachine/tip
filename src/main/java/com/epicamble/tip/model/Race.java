@@ -20,7 +20,7 @@ public class Race extends AbstractPersistable<Long> {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="owningRace")
     protected Collection<Units> startingUnits;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     protected Collection<Technology> startingTechnologies;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy="owningRace")

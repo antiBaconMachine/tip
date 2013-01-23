@@ -1,10 +1,12 @@
 package com.epicamble.tip.data;
 
 import com.epicamble.tip.model.Race;
+import com.epicamble.tip.service.RaceService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Set;
+import javax.annotation.PostConstruct;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.slf4j.Logger;
@@ -33,13 +35,17 @@ public class RaceImporter {
     @Qualifier("raceJsonFile")
     private File jsonFile;
     
+    @Autowired
+    private RaceService raceService;
+    
+    @PostConstruct
     public void importRaces() throws IOException {
         FileInputStream fis = new FileInputStream(jsonFile);
         Set<Race> races;
         races = objectMapper.readValue(fis, new TypeReference<Set<Race>>(){});
         logger.debug("read races {}", races);
         for (Race race : races) {
-            //TODO: save race
+            raceService.create(race);
         }
     }
 }

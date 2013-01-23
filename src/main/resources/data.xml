@@ -25,7 +25,7 @@
           p:entityManagerFactory-ref="entityManagerFactory"
           p:dataSource-ref="dataSource"/>
 
-    <jpa:repositories base-package="uk.co.codingcraft.pubs.repository"
+    <jpa:repositories base-package="com.epicamble.tip.repository"
                       entity-manager-factory-ref="entityManagerFactory"
                       transaction-manager-ref="transactionManager"/>
 
@@ -42,7 +42,7 @@
                 <entry key="hibernate.cache.use_second_level_cache" value="true"/>
                 <entry key="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
                 <entry key="hibernate.cache.use_query_cache" value="true"/>
-                <entry key="hibernate.hbm2ddl.auto" value="update"/>
+                <entry key="hibernate.hbm2ddl.auto" value="create-drop"/>
                 <entry key="javax.persistence.validation.factory" value-ref="validator" />
             </map>
         </property>

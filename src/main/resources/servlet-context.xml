@@ -13,7 +13,7 @@
 
     <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
-    <beans:import resource="../properties.xml" />
+    <beans:import resource="properties.xml" />
 
     <beans:bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <beans:property name="mappings">
@@ -44,7 +44,7 @@
                  p:suffix=".jsp"/>
 	
     <!-- Imports user-defined @Controller beans that process client requests -->
-    <beans:import resource="controllers.xml" />
+    <beans:import resource="classpath:controllers.xml" />
 	
     <!-- Configures External Property Resolution -->
     <!--beans:import resource="../properties.xml" /-->
