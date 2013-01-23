@@ -5,3 +5,4 @@
 *.iml
 application.log*
 /src/main/webapp/js/build
+application.log

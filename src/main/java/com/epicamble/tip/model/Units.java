@@ -1,5 +1,6 @@
 package com.epicamble.tip.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -26,7 +27,7 @@ public class Units extends AbstractPersistable<Long> {
     @Enumerated(EnumType.STRING) 
     protected UNIT_TYPE type;
     protected Integer count;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     protected Race owningRace;
 
     public UNIT_TYPE getType() {
