@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd 
+                           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd 
+                           http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd 
+                           http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd 
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+                           ">
+
+    <!-- Configures transaction management around @Transactional components -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    
+    <bean id="transactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager"
+          p:entityManagerFactory-ref="entityManagerFactory"
+          p:dataSource-ref="dataSource"/>
+
+    <jpa:repositories base-package="uk.co.codingcraft.pubs.repository"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager"/>
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+          lazy-init="true"
+          p:packagesToScan="com.epicamble.tip.model"
+          p:dataSource-ref="dataSource"
+          p:persistenceUnitName="persistentEntities">
+        <property name="jpaPropertyMap">
+            <map>
+                <entry key="hibernate.cache.use_second_level_cache" value="true"/>
+                <entry key="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+                <entry key="hibernate.cache.use_query_cache" value="true"/>
+                <entry key="hibernate.hbm2ddl.auto" value="update"/>
+                <entry key="javax.persistence.validation.factory" value-ref="validator" />
+            </map>
+        </property>
+        <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
+    </bean>
+    
+    <bean id="raceJson" class="org.springframework.core.io.ClassPathResource">
+        <constructor-arg value="/races.js" />
+    </bean>
+
+    <util:property-path id="raceJsonFile" path="raceJson.file" />
+    
+    <beans profile="dev,heroku">
+        
+        <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+              p:generateDdl="true"
+              p:databasePlatform="org.hibernate.dialect.PostgreSQLDialect"/>
+
+        <bean class="java.net.URI" id="dbUrl">
+            <!-- postgres://username:password@host:port/database_name-->
+            <constructor-arg value="${DATABASE_URL}"/>
+        </bean>
+
+        <bean id="dataSource"
+              class="com.mchange.v2.c3p0.ComboPooledDataSource"
+              destroy-method="close"
+              p:driverClass="org.postgresql.Driver"
+              p:jdbcUrl="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
+              p:user="#{ @dbUrl.getUserInfo().split(':')[0] }"
+              p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
+    </beans>
+    
+    <beans profile="testing">
+        
+        <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+              p:generateDdl="true"
+              p:databasePlatform="org.hibernate.dialect.H2Dialect"/>
+        <jdbc:embedded-database id="dataSource" type="H2"/> 
+    </beans>
+	
+</beans>

@@ -14,7 +14,8 @@
                         http://www.springframework.org/schema/util 
                         http://www.springframework.org/schema/util/spring-util-3.1.xsd">
     
-       <beans profile="dev"> 
+       <!--TODO: make a sensible default set-->
+       <beans profile="dev, testing"> 
             <context:property-placeholder location="classpath:dev.properties,
                 classpath:runtime.properties" />
        </beans>

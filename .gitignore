@@ -1,0 +1,7 @@
+/target
+/src/main/webapp/WEB-INF/glassfish-web.xml
+.env
+.idea
+*.iml
+application.log*
+/src/main/webapp/js/build
