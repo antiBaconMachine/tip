@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:social="http://www.springframework.org/schema/spring-social"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/spring-social http://www.springframework.org/schema/social/spring-social-1.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	
+    <bean id="usersConnectionRepository" class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
+        <constructor-arg ref="dataSource" />
+        <constructor-arg ref="connectionFactoryLocator" />
+        <constructor-arg ref="textEncryptor" />
+        <property name="connectionSignUp" ref="accountConnectionSignUp"/>
+        <aop:scoped-proxy proxy-target-class="false" />
+    </bean>
+    
+    <bean id="accountConnectionSignUp" class="uk.co.codingcraft.pubs.security.AccountConnectionSignUp" />
+    
+    <bean id="connectionFactoryLocator" class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
+        <property name="connectionFactories">
+            <list>
+                <bean class="org.springframework.social.twitter.connect.TwitterConnectionFactory">
+                    <constructor-arg value="${twitter.consumerKey}" />
+                    <constructor-arg value="${twitter.consumerSecret}" />
+                </bean>
+                <bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+                    <constructor-arg value="${facebook.clientId}" />
+                    <constructor-arg value="${facebook.clientSecret}" />
+                </bean>
+            </list>
+        </property>
+        <aop:scoped-proxy proxy-target-class="false" />
+    </bean>
+
+    <bean id="connectionRepository" factory-method="createConnectionRepository" factory-bean="usersConnectionRepository" scope="request">
+        <constructor-arg value="#{request.userPrincipal.name}" />
+        <aop:scoped-proxy proxy-target-class="false" />
+    </bean>
+    
+    <bean id="socialAuthenticationProvider" class="uk.co.codingcraft.pubs.security.SocialAuthenticationProvider" />
+    
+<!--
+    Heroku doesn't support 256 bit AES so we can't use the provided spring security encryptors
+    <beans profile="dev">
+        <bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors" factory-method="noOpText" />
+    </beans>
+    
+    <beans profile="heroku">
+        <bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors"
+                                                      factory-method="text">
+            <constructor-arg value="${security.encryptPassword}" />
+            <constructor-arg value="${security.encryptSalt}" />
+        </bean>
+    </beans>-->
+    
+    
+    <bean id="textEncryptor" class="uk.co.codingcraft.pubs.security.SocialSecretEncryptor">
+        <constructor-arg value="${security.encryptPassword}" />
+        <!--constructor-arg value="${security.encryptSalt}" /-->
+    </bean>
+    
+    
+	
+</beans>
