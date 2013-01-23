@@ -3941,3 +3941,242 @@ Caused by: java.io.FileNotFoundException: /home/shakeybear/projects/tip/target/c
 2013-01-23 19:38:50,085 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:523 - Published WebApplicationContext of servlet 'springapp' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.springapp]
 2013-01-23 19:38:50,085 [main] INFO  org.springframework.web.servlet.DispatcherServlet:463 - FrameworkServlet 'springapp': initialization completed in 1159 ms
 2013-01-23 19:38:50,085 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:136 - Servlet 'springapp' configured successfully
+2013-01-23 19:44:49,593 [Shutdown] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1025 - Closing WebApplicationContext for namespace 'springapp-servlet': startup date [Wed Jan 23 19:38:48 GMT 2013]; parent: Root WebApplicationContext
+2013-01-23 19:44:49,600 [Shutdown] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1025 - Closing Root WebApplicationContext: startup date [Wed Jan 23 19:38:40 GMT 2013]; root of context hierarchy
+2013-01-23 19:44:59,371 [main] INFO  org.springframework.web.context.ContextLoader:272 - Root WebApplicationContext: initialization started
+2013-01-23 19:44:59,442 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:114 - Initializing new StandardServletEnvironment
+2013-01-23 19:44:59,443 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+2013-01-23 19:44:59,443 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [servletContextInitParams] PropertySource with lowest search precedence
+2013-01-23 19:44:59,446 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [jndiProperties] PropertySource with lowest search precedence
+2013-01-23 19:44:59,447 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [systemProperties] PropertySource with lowest search precedence
+2013-01-23 19:44:59,447 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [systemEnvironment] PropertySource with lowest search precedence
+2013-01-23 19:44:59,448 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:120 - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,jndiProperties,systemProperties,systemEnvironment]
+2013-01-23 19:44:59,452 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:500 - Refreshing Root WebApplicationContext: startup date [Wed Jan 23 19:44:59 GMT 2013]; root of context hierarchy
+2013-01-23 19:44:59,456 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:161 - Replacing [servletContextInitParams] PropertySource with [servletContextInitParams]
+2013-01-23 19:44:59,942 [main] DEBUG org.springframework.web.context.support.XmlWebApplicationContext:530 - Bean factory for Root WebApplicationContext: org.springframework.beans.factory.support.DefaultListableBeanFactory@2d8eef25: defining beans [org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,homeController,raceImporter,raceServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,raceRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#1,entityManagerFactory,raceJson,raceJsonFile,hibernateJpaVendorAdapter,dbUrl,dataSource,validator,jacksonObjectMapper,lesscssWrappingController]; root of factory hierarchy
+2013-01-23 19:45:00,465 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:45:00,519 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'hibernateJpaVendorAdapter' of type [class org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:45:01,380 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'dbUrl' of type [class java.net.URI] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:45:01,398 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'dataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:45:01,465 [main] DEBUG org.jboss.logging:142 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2013-01-23 19:45:02,210 [main] ERROR org.springframework.web.context.ContextLoader:307 - Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0': Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [data.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: persistentEntities] Unable to build EntityManagerFactory
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:527)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.registerBeanPostProcessors(AbstractApplicationContext.java:733)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:454)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:383)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:283)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.mortbay.jetty.handler.ContextHandler.startContext(ContextHandler.java:549)
+	at org.mortbay.jetty.servlet.Context.startContext(Context.java:136)
+	at org.mortbay.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1282)
+	at org.mortbay.jetty.handler.ContextHandler.doStart(ContextHandler.java:518)
+	at org.mortbay.jetty.webapp.WebAppContext.doStart(WebAppContext.java:499)
+	at org.mortbay.jetty.plugin.Jetty6PluginWebAppContext.doStart(Jetty6PluginWebAppContext.java:115)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.handler.HandlerCollection.doStart(HandlerCollection.java:152)
+	at org.mortbay.jetty.handler.ContextHandlerCollection.doStart(ContextHandlerCollection.java:156)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.handler.HandlerCollection.doStart(HandlerCollection.java:152)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.handler.HandlerWrapper.doStart(HandlerWrapper.java:130)
+	at org.mortbay.jetty.Server.doStart(Server.java:224)
+	at org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+	at org.mortbay.jetty.plugin.Jetty6PluginServer.start(Jetty6PluginServer.java:132)
+	at org.mortbay.jetty.plugin.AbstractJettyMojo.startJetty(AbstractJettyMojo.java:454)
+	at org.mortbay.jetty.plugin.AbstractJettyMojo.execute(AbstractJettyMojo.java:396)
+	at org.mortbay.jetty.plugin.AbstractJettyRunMojo.execute(AbstractJettyRunMojo.java:210)
+	at org.mortbay.jetty.plugin.Jetty6RunMojo.execute(Jetty6RunMojo.java:184)
+	at org.apache.maven.plugin.DefaultPluginManager.executeMojo(DefaultPluginManager.java:490)
+	at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeGoals(DefaultLifecycleExecutor.java:694)
+	at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeStandaloneGoal(DefaultLifecycleExecutor.java:569)
+	at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeGoal(DefaultLifecycleExecutor.java:539)
+	at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeGoalAndHandleFailures(DefaultLifecycleExecutor.java:387)
+	at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeTaskSegments(DefaultLifecycleExecutor.java:348)
+	at org.apache.maven.lifecycle.DefaultLifecycleExecutor.execute(DefaultLifecycleExecutor.java:180)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:328)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:138)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:362)
+	at org.apache.maven.cli.compat.CompatibleMain.main(CompatibleMain.java:60)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.codehaus.classworlds.Launcher.launchEnhanced(Launcher.java:315)
+	at org.codehaus.classworlds.Launcher.launch(Launcher.java:255)
+	at org.codehaus.classworlds.Launcher.mainWithExitCode(Launcher.java:430)
+	at org.codehaus.classworlds.Launcher.main(Launcher.java:375)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [data.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: persistentEntities] Unable to build EntityManagerFactory
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1455)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:424)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:277)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.detectPersistenceExceptionTranslators(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.<init>(PersistenceExceptionTranslationInterceptor.java:79)
+	at org.springframework.dao.annotation.PersistenceExceptionTranslationAdvisor.<init>(PersistenceExceptionTranslationAdvisor.java:70)
+	at org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor.setBeanFactory(PersistenceExceptionTranslationPostProcessor.java:103)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeAwareMethods(AbstractAutowireCapableBeanFactory.java:1475)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	... 49 more
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: persistentEntities] Unable to build EntityManagerFactory
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:915)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:890)
+	at org.hibernate.ejb.HibernatePersistence.createContainerEntityManagerFactory(HibernatePersistence.java:74)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:268)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:310)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1514)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1452)
+	... 64 more
+Caused by: org.hibernate.MappingException: Unable to instantiate custom type: org.hibernate.type.EnumType
+	at org.hibernate.type.TypeFactory.custom(TypeFactory.java:193)
+	at org.hibernate.type.TypeFactory.custom(TypeFactory.java:179)
+	at org.hibernate.type.TypeFactory.byClass(TypeFactory.java:103)
+	at org.hibernate.type.TypeResolver.heuristicType(TypeResolver.java:130)
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:296)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:289)
+	at org.hibernate.mapping.Property.isValid(Property.java:238)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:468)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:270)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1294)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1736)
+	at org.hibernate.ejb.EntityManagerFactoryImpl.<init>(EntityManagerFactoryImpl.java:94)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:905)
+	... 70 more
+Caused by: java.lang.NullPointerException
+	at org.hibernate.type.EnumType.setParameterValues(EnumType.java:171)
+	at org.hibernate.type.TypeFactory.injectParameters(TypeFactory.java:131)
+	at org.hibernate.type.TypeFactory.custom(TypeFactory.java:189)
+	... 82 more
+2013-01-23 19:46:55,453 [main] INFO  org.springframework.web.context.ContextLoader:272 - Root WebApplicationContext: initialization started
+2013-01-23 19:46:55,538 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:114 - Initializing new StandardServletEnvironment
+2013-01-23 19:46:55,539 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+2013-01-23 19:46:55,540 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [servletContextInitParams] PropertySource with lowest search precedence
+2013-01-23 19:46:55,543 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [jndiProperties] PropertySource with lowest search precedence
+2013-01-23 19:46:55,543 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [systemProperties] PropertySource with lowest search precedence
+2013-01-23 19:46:55,544 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [systemEnvironment] PropertySource with lowest search precedence
+2013-01-23 19:46:55,544 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:120 - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,jndiProperties,systemProperties,systemEnvironment]
+2013-01-23 19:46:55,549 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:500 - Refreshing Root WebApplicationContext: startup date [Wed Jan 23 19:46:55 GMT 2013]; root of context hierarchy
+2013-01-23 19:46:55,554 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:161 - Replacing [servletContextInitParams] PropertySource with [servletContextInitParams]
+2013-01-23 19:46:55,990 [main] DEBUG org.springframework.web.context.support.XmlWebApplicationContext:530 - Bean factory for Root WebApplicationContext: org.springframework.beans.factory.support.DefaultListableBeanFactory@6fefa3e7: defining beans [org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,homeController,raceImporter,raceServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,raceRepository,org.springframework.data.repository.core.support.RepositoryInterfaceAwareBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0,org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor#0,org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#1,entityManagerFactory,raceJson,raceJsonFile,hibernateJpaVendorAdapter,dbUrl,dataSource,validator,jacksonObjectMapper,lesscssWrappingController]; root of factory hierarchy
+2013-01-23 19:46:56,476 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:46:56,547 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'hibernateJpaVendorAdapter' of type [class org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:46:57,349 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'dbUrl' of type [class java.net.URI] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:46:57,361 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'dataSource' of type [class com.mchange.v2.c3p0.ComboPooledDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:46:57,413 [main] DEBUG org.jboss.logging:142 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2013-01-23 19:46:58,867 [main] WARN  net.sf.ehcache.config.ConfigurationFactory:134 - No configuration found. Configuring ehcache from ehcache-failsafe.xml  found in the classpath: jar:file:/home/shakeybear/.m2/repository/net/sf/ehcache/ehcache-core/2.4.7/ehcache-core-2.4.7.jar!/ehcache-failsafe.xml
+2013-01-23 19:46:59,327 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Race_Technology drop constraint FKF6AAE73AA8831445
+2013-01-23 19:46:59,328 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport:426 - ERROR: relation "race_technology" does not exist
+2013-01-23 19:46:59,332 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Race_Technology drop constraint FKF6AAE73AC424478E
+2013-01-23 19:46:59,332 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport:426 - ERROR: relation "race_technology" does not exist
+2013-01-23 19:46:59,335 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table SpecialAbility drop constraint FK80794651E0188D67
+2013-01-23 19:46:59,336 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport:426 - ERROR: relation "specialability" does not exist
+2013-01-23 19:46:59,344 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: alter table Units drop constraint FK4E1674FE0188D67
+2013-01-23 19:46:59,346 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport:426 - ERROR: relation "units" does not exist
+2013-01-23 19:46:59,364 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport:425 - HHH000389: Unsuccessful: drop sequence hibernate_sequence
+2013-01-23 19:46:59,368 [main] ERROR org.hibernate.tool.hbm2ddl.SchemaExport:426 - ERROR: sequence "hibernate_sequence" does not exist
+2013-01-23 19:46:59,837 [main] WARN  org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory:180 - HHH020003: Could not find a specific ehcache configuration for cache named [org.hibernate.cache.spi.UpdateTimestampsCache]; using defaults.
+2013-01-23 19:46:59,868 [main] WARN  org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory:180 - HHH020003: Could not find a specific ehcache configuration for cache named [org.hibernate.cache.internal.StandardQueryCache]; using defaults.
+2013-01-23 19:46:59,928 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'entityManagerFactory' of type [class org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:46:59,978 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:46:59,984 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:1355 - Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2013-01-23 19:47:00,009 [main] DEBUG org.springframework.web.context.support.XmlWebApplicationContext:799 - Unable to locate MessageSource with name 'messageSource': using default [org.springframework.context.support.DelegatingMessageSource@6a0f0c67]
+2013-01-23 19:47:00,012 [main] DEBUG org.springframework.web.context.support.XmlWebApplicationContext:823 - Unable to locate ApplicationEventMulticaster with name 'applicationEventMulticaster': using default [org.springframework.context.event.SimpleApplicationEventMulticaster@51f45f2a]
+2013-01-23 19:47:00,599 [main] DEBUG com.epicamble.tip.data.RaceImporter:46 - read races [Entity of type com.epicamble.tip.model.Race with id: null]
+2013-01-23 19:47:00,850 [main] DEBUG com.asual.lesscss.LessEngine:56 - Initializing LESS Engine.
+2013-01-23 19:47:00,897 [main] DEBUG com.asual.lesscss.LessEngine:63 - Using implementation version: Rhino 1.7 release 3 2011 07 19
+2013-01-23 19:47:01,981 [main] DEBUG org.springframework.web.context.support.XmlWebApplicationContext:850 - Unable to locate LifecycleProcessor with name 'lifecycleProcessor': using default [org.springframework.context.support.DefaultLifecycleProcessor@5c52fbe5]
+2013-01-23 19:47:01,991 [main] DEBUG org.springframework.web.context.ContextLoader:296 - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2013-01-23 19:47:01,991 [main] INFO  org.springframework.web.context.ContextLoader:301 - Root WebApplicationContext: initialization completed in 6533 ms
+2013-01-23 19:47:01,994 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:114 - Initializing new StandardServletEnvironment
+2013-01-23 19:47:01,999 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+2013-01-23 19:47:02,000 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [servletContextInitParams] PropertySource with lowest search precedence
+2013-01-23 19:47:02,000 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [jndiProperties] PropertySource with lowest search precedence
+2013-01-23 19:47:02,005 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [systemProperties] PropertySource with lowest search precedence
+2013-01-23 19:47:02,006 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [systemEnvironment] PropertySource with lowest search precedence
+2013-01-23 19:47:02,006 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:120 - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,jndiProperties,systemProperties,systemEnvironment]
+2013-01-23 19:47:02,100 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:114 - Initializing new StandardServletEnvironment
+2013-01-23 19:47:02,118 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+2013-01-23 19:47:02,118 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [servletContextInitParams] PropertySource with lowest search precedence
+2013-01-23 19:47:02,118 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [jndiProperties] PropertySource with lowest search precedence
+2013-01-23 19:47:02,119 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [systemProperties] PropertySource with lowest search precedence
+2013-01-23 19:47:02,119 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [systemEnvironment] PropertySource with lowest search precedence
+2013-01-23 19:47:02,120 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:120 - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,jndiProperties,systemProperties,systemEnvironment]
+2013-01-23 19:47:02,120 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:115 - Initializing servlet 'springapp'
+2013-01-23 19:47:02,160 [main] INFO  org.springframework.web.servlet.DispatcherServlet:444 - FrameworkServlet 'springapp': initialization started
+2013-01-23 19:47:02,161 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:572 - Servlet with name 'springapp' will try to create custom WebApplicationContext context of class 'org.springframework.web.context.support.XmlWebApplicationContext', using parent context [Root WebApplicationContext: startup date [Wed Jan 23 19:46:55 GMT 2013]; root of context hierarchy]
+2013-01-23 19:47:02,161 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:114 - Initializing new StandardServletEnvironment
+2013-01-23 19:47:02,162 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+2013-01-23 19:47:02,162 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [servletContextInitParams] PropertySource with lowest search precedence
+2013-01-23 19:47:02,162 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [jndiProperties] PropertySource with lowest search precedence
+2013-01-23 19:47:02,163 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [systemProperties] PropertySource with lowest search precedence
+2013-01-23 19:47:02,163 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:104 - Adding [systemEnvironment] PropertySource with lowest search precedence
+2013-01-23 19:47:02,163 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:120 - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,jndiProperties,systemProperties,systemEnvironment]
+2013-01-23 19:47:02,168 [main] INFO  org.springframework.web.context.support.XmlWebApplicationContext:500 - Refreshing WebApplicationContext for namespace 'springapp-servlet': startup date [Wed Jan 23 19:47:02 GMT 2013]; parent: Root WebApplicationContext
+2013-01-23 19:47:02,169 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:161 - Replacing [servletContextInitParams] PropertySource with [servletContextInitParams]
+2013-01-23 19:47:02,170 [main] DEBUG org.springframework.web.context.support.StandardServletEnvironment:161 - Replacing [servletConfigInitParams] PropertySource with [servletConfigInitParams]
+2013-01-23 19:47:02,362 [main] DEBUG org.springframework.web.context.support.XmlWebApplicationContext:530 - Bean factory for WebApplicationContext for namespace 'springapp-servlet': org.springframework.beans.factory.support.DefaultListableBeanFactory@10ca6ba3: defining beans [org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,urlMapping,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.validation.beanvalidation.LocalValidatorFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,org.springframework.web.servlet.config.viewControllerHandlerMapping,org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#1,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#1,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#2,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#2,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#3,viewResolver,homeController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@6fefa3e7
+2013-01-23 19:47:02,409 [main] DEBUG org.springframework.web.context.support.XmlWebApplicationContext:799 - Unable to locate MessageSource with name 'messageSource': using default [org.springframework.context.support.DelegatingMessageSource@4dc3fd59]
+2013-01-23 19:47:02,410 [main] DEBUG org.springframework.web.context.support.XmlWebApplicationContext:823 - Unable to locate ApplicationEventMulticaster with name 'applicationEventMulticaster': using default [org.springframework.context.event.SimpleApplicationEventMulticaster@7e2e05f1]
+2013-01-23 19:47:02,501 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:314 - Mapped URL path [/css/*.less] onto handler 'lesscssWrappingController'
+2013-01-23 19:47:02,525 [main] DEBUG org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:98 - Looking for request mappings in application context: WebApplicationContext for namespace 'springapp-servlet': startup date [Wed Jan 23 19:47:02 GMT 2013]; parent: Root WebApplicationContext
+2013-01-23 19:47:02,557 [main] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:186 - Mapped "{[ || /],methods=[GET],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public org.springframework.web.servlet.ModelAndView com.epicamble.tip.controller.HomeController.showHome(javax.servlet.http.HttpServletRequest,java.security.Principal) throws java.io.IOException
+2013-01-23 19:47:03,102 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:71 - Looking for URL mappings in application context: WebApplicationContext for namespace 'springapp-servlet': startup date [Wed Jan 23 19:47:02 GMT 2013]; parent: Root WebApplicationContext
+2013-01-23 19:47:03,109 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0': no URL paths identified
+2013-01-23 19:47:03,110 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'urlMapping': no URL paths identified
+2013-01-23 19:47:03,110 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping#0': no URL paths identified
+2013-01-23 19:47:03,111 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.format.support.FormattingConversionServiceFactoryBean#0': no URL paths identified
+2013-01-23 19:47:03,111 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.validation.beanvalidation.LocalValidatorFactoryBean#0': no URL paths identified
+2013-01-23 19:47:03,119 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0': no URL paths identified
+2013-01-23 19:47:03,120 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.handler.MappedInterceptor#0': no URL paths identified
+2013-01-23 19:47:03,120 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0': no URL paths identified
+2013-01-23 19:47:03,120 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0': no URL paths identified
+2013-01-23 19:47:03,121 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0': no URL paths identified
+2013-01-23 19:47:03,121 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping': no URL paths identified
+2013-01-23 19:47:03,121 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter': no URL paths identified
+2013-01-23 19:47:03,122 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter': no URL paths identified
+2013-01-23 19:47:03,122 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.config.viewControllerHandlerMapping': no URL paths identified
+2013-01-23 19:47:03,122 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0': no URL paths identified
+2013-01-23 19:47:03,123 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0': no URL paths identified
+2013-01-23 19:47:03,123 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0': no URL paths identified
+2013-01-23 19:47:03,123 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#1': no URL paths identified
+2013-01-23 19:47:03,123 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#1': no URL paths identified
+2013-01-23 19:47:03,124 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#2': no URL paths identified
+2013-01-23 19:47:03,124 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#2': no URL paths identified
+2013-01-23 19:47:03,124 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#3': no URL paths identified
+2013-01-23 19:47:03,124 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'viewResolver': no URL paths identified
+2013-01-23 19:47:03,125 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'homeController': no URL paths identified
+2013-01-23 19:47:03,125 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor': no URL paths identified
+2013-01-23 19:47:03,129 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor': no URL paths identified
+2013-01-23 19:47:03,130 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalRequiredAnnotationProcessor': no URL paths identified
+2013-01-23 19:47:03,130 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalCommonAnnotationProcessor': no URL paths identified
+2013-01-23 19:47:03,130 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalPersistenceAnnotationProcessor': no URL paths identified
+2013-01-23 19:47:03,131 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0': no URL paths identified
+2013-01-23 19:47:03,137 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'servletConfig': no URL paths identified
+2013-01-23 19:47:03,138 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'importRegistry': no URL paths identified
+2013-01-23 19:47:03,138 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'messageSource': no URL paths identified
+2013-01-23 19:47:03,138 [main] DEBUG org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping:86 - Rejected bean name 'applicationEventMulticaster': no URL paths identified
+2013-01-23 19:47:03,172 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:314 - Mapped URL path [/admin/] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2013-01-23 19:47:03,189 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:314 - Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+2013-01-23 19:47:03,220 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:314 - Mapped URL path [/images/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+2013-01-23 19:47:03,227 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:314 - Mapped URL path [/favicon.ico] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#1'
+2013-01-23 19:47:03,237 [main] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:314 - Mapped URL path [/resources/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#2'
+2013-01-23 19:47:03,289 [main] DEBUG org.springframework.web.context.support.XmlWebApplicationContext:850 - Unable to locate LifecycleProcessor with name 'lifecycleProcessor': using default [org.springframework.context.support.DefaultLifecycleProcessor@1039f33]
+2013-01-23 19:47:03,299 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:465 - Unable to locate MultipartResolver with name 'multipartResolver': no multipart request handling provided
+2013-01-23 19:47:03,302 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:487 - Unable to locate LocaleResolver with name 'localeResolver': using default [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@1ff19e50]
+2013-01-23 19:47:03,314 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:509 - Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@73f025cb]
+2013-01-23 19:47:03,333 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:647 - Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@43f12248]
+2013-01-23 19:47:03,341 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:709 - Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@61b1acc3]
+2013-01-23 19:47:03,349 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:523 - Published WebApplicationContext of servlet 'springapp' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.springapp]
+2013-01-23 19:47:03,350 [main] INFO  org.springframework.web.servlet.DispatcherServlet:463 - FrameworkServlet 'springapp': initialization completed in 1190 ms
+2013-01-23 19:47:03,350 [main] DEBUG org.springframework.web.servlet.DispatcherServlet:136 - Servlet 'springapp' configured successfully

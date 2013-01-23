@@ -1,7 +1,10 @@
 package com.epicamble.tip.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
@@ -20,6 +23,7 @@ public class Units extends AbstractPersistable<Long> {
         PDS
     }
     
+    @Enumerated(EnumType.STRING) 
     protected UNIT_TYPE type;
     protected Integer count;
     @ManyToOne
