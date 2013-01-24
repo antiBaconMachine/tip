@@ -1,7 +1,9 @@
 package com.epicamble.tip.model;
 
 import java.util.Collection;
+import java.util.Map;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -15,17 +17,25 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class Race extends AbstractPersistable<Long> {
     
+    public enum UNIT_TYPE {
+        SPACE_DOCK,
+        CARRIER,
+        GROUND_FORCE,
+        DREADNOUGHT,
+        FIGHTER,
+        PDS
+    }
+    
     protected String name;
     protected String description;
     
-    //http://docs.jboss.org/hibernate/stable/annotations/reference/en/html/entity.html#entity-mapping-association-collections 2.2.5.3.1.1. 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="owningrace_id")
-    protected Collection<Units> startingUnits;
+    @ElementCollection
+    protected Map<UNIT_TYPE, Integer> startingUnits;
     
     @ManyToMany(cascade = CascadeType.ALL)
     protected Collection<Technology> startingTechnologies;
     
+    //http://docs.jboss.org/hibernate/stable/annotations/reference/en/html/entity.html#entity-mapping-association-collections 2.2.5.3.1.1. 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="owningrace_id")
     protected Collection<SpecialAbility> specialAbilities;
@@ -46,11 +56,11 @@ public class Race extends AbstractPersistable<Long> {
         this.description = description;
     }
 
-    public Collection<Units> getStartingUnits() {
+    public Map<UNIT_TYPE, Integer> getStartingUnits() {
         return startingUnits;
     }
 
-    public void setStartingUnits(Collection<Units> startingUnits) {
+    public void setStartingUnits(Map<UNIT_TYPE, Integer> startingUnits) {
         this.startingUnits = startingUnits;
     }
 
