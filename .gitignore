@@ -6,3 +6,5 @@
 application.log*
 /src/main/webapp/js/build
 application.log
+logs/2013_01_23.request.log logs/2013_01_24.request.log
+logs/*

@@ -4,6 +4,7 @@ import com.epicamble.tip.model.Race;
 import com.epicamble.tip.service.RaceService;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
 import javax.annotation.PostConstruct;
@@ -40,12 +41,17 @@ public class RaceImporter {
     
     @PostConstruct
     public void importRaces() throws IOException {
+        Set<Race> races = getRacesFromJSON();
+        for (Race race : races) {
+            raceService.create(race);
+        }
+    }
+    
+    public Set<Race> getRacesFromJSON() throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(jsonFile);
         Set<Race> races;
         races = objectMapper.readValue(fis, new TypeReference<Set<Race>>(){});
         logger.debug("read races {}", races);
-        for (Race race : races) {
-            raceService.create(race);
-        }
+        return races;
     }
 }

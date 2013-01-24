@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -52,6 +53,37 @@ public class Units extends AbstractPersistable<Long> {
 
     public void setOwningRace(Race owningRace) {
         this.owningRace = owningRace;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + (this.type != null ? this.type.hashCode() : 0);
+        hash = 41 * hash + (this.count != null ? this.count.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Units other = (Units) obj;
+        if (this.type != other.type) {
+            return false;
+        }
+        if (this.count != other.count && (this.count == null || !this.count.equals(other.count))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Units{" + "type=" + type + ", count=" + count + '}';
     }
     
 }

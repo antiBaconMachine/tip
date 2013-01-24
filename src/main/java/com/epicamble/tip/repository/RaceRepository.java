@@ -8,5 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Ollie Edwards <oliver.s.edwards@gmail.com>
  */
 public interface RaceRepository extends JpaRepository<Race, Long> {
-
+    
+    public Race findByName(String name);
+    
 }

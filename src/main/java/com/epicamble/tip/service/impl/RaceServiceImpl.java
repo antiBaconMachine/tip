@@ -41,6 +41,11 @@ public class RaceServiceImpl implements RaceService {
     public void delete(long id) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public Race findByName(String name) {
+        return raceRepository.findByName(name);
+    }
     
     
 

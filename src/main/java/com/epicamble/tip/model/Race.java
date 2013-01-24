@@ -17,7 +17,7 @@ public class Race extends AbstractPersistable<Long> {
     protected String name;
     protected String description;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="owningRace")
+    @OneToMany(cascade = CascadeType.ALL)
     protected Collection<Units> startingUnits;
     
     @ManyToMany(cascade = CascadeType.ALL)
@@ -65,5 +65,53 @@ public class Race extends AbstractPersistable<Long> {
     public void setSpecialAbilities(Collection<SpecialAbility> specialAbilities) {
         this.specialAbilities = specialAbilities;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 59 * hash + (this.description != null ? this.description.hashCode() : 0);
+        hash = 59 * hash + (this.startingUnits != null ? this.startingUnits.hashCode() : 0);
+        hash = 59 * hash + (this.startingTechnologies != null ? this.startingTechnologies.hashCode() : 0);
+        hash = 59 * hash + (this.specialAbilities != null ? this.specialAbilities.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Race other = (Race) obj;
+        if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+            return false;
+        }
+        if ((this.description == null) ? (other.description != null) : !this.description.equals(other.description)) {
+            return false;
+        }
+        if (this.startingUnits != other.startingUnits && (this.startingUnits == null || !this.startingUnits.equals(other.startingUnits))) {
+            return false;
+        }
+        if (this.startingTechnologies != other.startingTechnologies && (this.startingTechnologies == null || !this.startingTechnologies.equals(other.startingTechnologies))) {
+            return false;
+        }
+        if (this.specialAbilities != other.specialAbilities && (this.specialAbilities == null || !this.specialAbilities.equals(other.specialAbilities))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Race{" + "name=" + name + 
+                ", description=" + description + 
+                ", startingUnits=" + startingUnits + 
+                ", startingTechnologies=" + startingTechnologies + 
+                ", specialAbilities=" + specialAbilities + '}';
+    }
+    
     
 }

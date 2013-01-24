@@ -17,6 +17,8 @@ public interface RaceService {
     
     public List<Race> findAll();
     
+    public Race findByName(String name);
+    
     public Race findById(long id);
     
     public Race update(Race race); 
