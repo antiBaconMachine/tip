@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
  *
  * @author Ollie Edwards <ollie@codingcraft.co.uk>
  */
-abstract class BaseController extends AbstractController {
+public abstract class BaseController extends AbstractController {
 
     @Value("${js.debug}")
     protected String jsDebugLevel;

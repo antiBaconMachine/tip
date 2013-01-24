@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>Pubs</title>
+        <title>Races</title>
         <meta name="decorator" content="admin" />
     </head>
     <body>

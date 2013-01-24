@@ -1,5 +1,6 @@
 package com.epicamble.tip.model;
 
+import com.epicamble.tip.util.UNIT_TYPE;
 import java.util.Collection;
 import java.util.Map;
 import javax.persistence.CascadeType;
@@ -16,15 +17,6 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  */
 @Entity
 public class Race extends AbstractPersistable<Long> {
-    
-    public enum UNIT_TYPE {
-        SPACE_DOCK,
-        CARRIER,
-        GROUND_FORCE,
-        DREADNOUGHT,
-        FIGHTER,
-        PDS
-    }
     
     protected String name;
     protected String description;

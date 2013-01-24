@@ -24,6 +24,47 @@
         <ul>
             <li><span>Name<span><span><spring:input path="name"/><span></li>
             <li><span>Description<span><span><spring:textarea path="description" /><span></li>
+            <li>
+                <span>starting units</span>
+                <ul>
+                    <c:forEach items="${UNITS}" var="unit">
+                        <c:set var="name" value="startingUnits['${unit}']" />
+                        <li>
+                            <label for="${name}">${unit}</label>
+                            <input name="${name}" value="${race.startingUnits[unit]}"/>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </li>
+            <li>
+                <span>starting technologies</span>
+                <ul style="clear:right; overflow:auto">
+                    <c:forEach items="${technologies}" var="technology">
+                        <li style="width: 200px; float:left">
+                            <c:set var="id" value="chk${technology.name}" />
+                            <label for="${id}">${technology.name}</label>
+                            <input id="${id}" type="checkbox" name="startingTechnologies"/>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </li>
+            <li>
+                <span>Special Abilites</span>
+                <ul>
+                    <li>
+                        <textarea name="specialAbilities"></textarea>
+                    </li>
+                    <li>
+                        <textarea name="specialAbilities"></textarea>
+                    </li>
+                    <li>
+                        <textarea name="specialAbilities"></textarea>
+                    </li>
+                    <li>
+                        <textarea name="specialAbilities"></textarea>
+                    </li>
+                </ul>
+            </li>
         </ul>
         <input id="submit" type="submit" class="btn btn-primary" value="Save">
         <a href="/admin/races/${race.id}" class="btn">Cancel</a>
