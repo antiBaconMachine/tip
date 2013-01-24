@@ -39,17 +39,18 @@
             <li>
                 <span>starting technologies</span>
                 <ul style="clear:right; overflow:auto">
-                    <c:forEach items="${technologies}" var="technology">
+                    <c:forEach items="${technologies}" var="technology" varStatus="stat">
                         <li style="width: 200px; float:left">
                             <c:set var="id" value="chk${technology.name}" />
                             <label for="${id}">${technology.name}</label>
-                            <input id="${id}" type="checkbox" name="startingTechnologies"/>
+                            <%--<input id="${id}" type="checkbox" name="startingTechnologies[${stat.index}].id" value="${technology.id}"/>--%>
+                            <spring:checkbox id="${id}" path="startingTechnologies" value="${technology.id}"/>
                         </li>
                     </c:forEach>
                 </ul>
             </li>
             <li>
-                <span>Special Abilites</span>
+<!--                <span>Special Abilites</span>
                 <ul>
                     <li>
                         <textarea name="specialAbilities"></textarea>
@@ -63,7 +64,7 @@
                     <li>
                         <textarea name="specialAbilities"></textarea>
                     </li>
-                </ul>
+                </ul>-->
             </li>
         </ul>
         <input id="submit" type="submit" class="btn btn-primary" value="Save">

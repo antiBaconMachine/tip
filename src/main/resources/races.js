@@ -10,6 +10,10 @@
     {
         "name" : "Enviro Compensator",
         "description" : ""
+    },
+    {
+        "name" : "Stasis Capsules",
+        "description" : ""
     }
     ],
     "specialAbilities" : [

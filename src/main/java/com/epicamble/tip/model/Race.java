@@ -2,6 +2,7 @@ package com.epicamble.tip.model;
 
 import com.epicamble.tip.util.UNIT_TYPE;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.util.AutoPopulatingList;
 
 /**
  *
@@ -25,7 +27,7 @@ public class Race extends AbstractPersistable<Long> {
     protected Map<UNIT_TYPE, Integer> startingUnits;
     
     @ManyToMany(cascade = CascadeType.ALL)
-    protected Collection<Technology> startingTechnologies;
+    protected List<Technology> startingTechnologies;
     
     //http://docs.jboss.org/hibernate/stable/annotations/reference/en/html/entity.html#entity-mapping-association-collections 2.2.5.3.1.1. 
     @OneToMany(cascade = CascadeType.ALL)
@@ -60,7 +62,7 @@ public class Race extends AbstractPersistable<Long> {
         return startingTechnologies;
     }
 
-    public void setStartingTechnologies(Collection<Technology> startingTechnologies) {
+    public void setStartingTechnologies(List<Technology> startingTechnologies) {
         this.startingTechnologies = startingTechnologies;
     }
 
