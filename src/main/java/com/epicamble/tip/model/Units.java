@@ -6,6 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -47,7 +48,8 @@ public class Units extends AbstractPersistable<Long> {
     public void setCount(Integer count) {
         this.count = count;
     }
-
+    
+    @JsonIgnore
     public Race getOwningRace() {
         return owningRace;
     }

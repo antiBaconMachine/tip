@@ -3,6 +3,7 @@ package com.epicamble.tip.model;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
@@ -33,7 +34,8 @@ public class Technology extends AbstractPersistable<Long> {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    
+    @JsonIgnore
     public Collection<Race> getOwningRaces() {
         return owningRaces;
     }

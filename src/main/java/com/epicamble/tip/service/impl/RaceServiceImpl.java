@@ -24,12 +24,12 @@ public class RaceServiceImpl implements RaceService {
 
     @Override
     public List<Race> findAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return raceRepository.findAll();
     }
 
     @Override
     public Race findById(long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return raceRepository.findOne(id);
     }
 
     @Override

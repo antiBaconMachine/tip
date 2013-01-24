@@ -3,6 +3,7 @@ package com.epicamble.tip.model;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
@@ -24,7 +25,8 @@ public class SpecialAbility extends AbstractPersistable<Long> {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    
+    @JsonIgnore
     public Race getOwningRace() {
         return owningRace;
     }
