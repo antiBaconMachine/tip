@@ -28,7 +28,8 @@ public class Units extends AbstractPersistable<Long> {
     @Enumerated(EnumType.STRING) 
     protected UNIT_TYPE type;
     protected Integer count;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name="owningrace_id", insertable=false, updatable=false)
     protected Race owningRace;
 
     public UNIT_TYPE getType() {

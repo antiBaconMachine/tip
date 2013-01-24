@@ -3,6 +3,7 @@ package com.epicamble.tip.model;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -17,13 +18,16 @@ public class Race extends AbstractPersistable<Long> {
     protected String name;
     protected String description;
     
+    //http://docs.jboss.org/hibernate/stable/annotations/reference/en/html/entity.html#entity-mapping-association-collections 2.2.5.3.1.1. 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="owningrace_id")
     protected Collection<Units> startingUnits;
     
     @ManyToMany(cascade = CascadeType.ALL)
     protected Collection<Technology> startingTechnologies;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="owningRace")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="owningrace_id")
     protected Collection<SpecialAbility> specialAbilities;
 
     public String getName() {

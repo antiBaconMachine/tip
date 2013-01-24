@@ -14,7 +14,7 @@ public class SpecialAbility extends AbstractPersistable<Long> {
     
     protected String description;
     @ManyToOne
-    @JoinColumn(name="owningrace_id")
+    @JoinColumn(name="owningrace_id", insertable=false, updatable=false)
     protected Race owningRace;
 
     public String getDescription() {
