@@ -43,8 +43,7 @@
                         <li style="width: 200px; float:left">
                             <c:set var="id" value="chk${technology.name}" />
                             <label for="${id}">${technology.name}</label>
-                            <%--<input id="${id}" type="checkbox" name="startingTechnologies[${stat.index}].id" value="${technology.id}"/>--%>
-                            <spring:checkbox id="${id}" path="startingTechnologies" value="${technology.id}"/>
+                            <input id="${id}" type="checkbox" name="startingTechnologies[${stat.index}]" value="${technology.id}"/>
                         </li>
                     </c:forEach>
                 </ul>

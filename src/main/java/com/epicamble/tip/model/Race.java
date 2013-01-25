@@ -27,7 +27,7 @@ public class Race extends AbstractPersistable<Long> {
     protected Map<UNIT_TYPE, Integer> startingUnits;
     
     @ManyToMany(cascade = CascadeType.ALL)
-    protected List<Technology> startingTechnologies;
+    protected List<Technology> startingTechnologies = new AutoPopulatingList<Technology>(Technology.class);;
     
     //http://docs.jboss.org/hibernate/stable/annotations/reference/en/html/entity.html#entity-mapping-association-collections 2.2.5.3.1.1. 
     @OneToMany(cascade = CascadeType.ALL)

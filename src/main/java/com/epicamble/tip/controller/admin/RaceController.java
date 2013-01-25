@@ -15,6 +15,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -44,6 +45,38 @@ public class RaceController extends BaseController {
     @Autowired
     private TechnologyRepository technologyRepository;
 
+//    @InitBinder
+//    public void initBinderAll(final WebDataBinder binder) {
+//
+//        /**
+//         * Technology editor
+//         */
+//        binder.registerCustomEditor(Collection.class, 
+//                new CustomCollectionEditor(Collection.class) {
+//                    
+//                    @Override
+//                    public void setAsText(String e) {
+//                        logger.debug("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+//                        super.setAsText(e);
+//                    }
+//                    
+//                    @Override
+//                    protected Object convertElement(Object element) {
+//                        if (element instanceof Technology) {
+//                            logger.debug("We already have a technology");
+//                            return element;
+//                        }
+//                        if (element instanceof String) {
+//                            Long id = Long.parseLong((String) element);
+//                            Technology tech = technologyRepository.findOne(id);
+//                            logger.debug("Retrieved terchnology {}",tech);
+//                            return tech;
+//                        }
+//                        logger.warn("Failed to convert technology {}", element);
+//                        return null;
+//                    }
+//        });
+//    }
     
     @InitBinder
     public void initBinderAll(final WebDataBinder binder) {
@@ -51,11 +84,10 @@ public class RaceController extends BaseController {
         /**
          * Technology editor
          */
-        binder.registerCustomEditor(Collection.class, "startingTechnology", new PropertyEditorSupport() {
-            
+        binder.registerCustomEditor(Technology.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String tech) {
-                logger.debug("Converting string to technology {}",tech);
+                logger.debug("Converting string to technology {}", tech);
                 Long l = Long.parseLong(tech);
                 Technology technology = technologyRepository.findOne(l);
                 if (technology != null) {
@@ -64,19 +96,8 @@ public class RaceController extends BaseController {
                 }
                 //setAsString(new String[]{tech});
             }
-//            public void setAsString(String[] technologies) {
-//                logger.debug("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-//                Set<Technology> techs = new HashSet<Technology>();
-//                for (String strI : Arrays.asList(technologies)) {
-//                    Long l = Long.parseLong(strI);
-//                    Technology tech = technologyRepository.findOne(l);
-//                    if (tech != null) {
-//                        techs.add(tech);
-//                    }
-//                }
-//                setValue(techs);
-//            }
         });
+                
     }
 
     @RequestMapping
@@ -104,16 +125,11 @@ public class RaceController extends BaseController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView create(@ModelAttribute("race") Race race, BindingResult result, RedirectAttributes redirectAttributes) {
         ModelAndView mav = new ModelAndView("redirect:/admin/races");
-        logger.debug("Creating new race {} with binding result {}", new Object[]{race, result});
+        logger.debug("Creating new race {} with binding result {}", new Object[]{race, result.getModel()});
         if (result.hasErrors()) {
             mav.setViewName("redirect:/admin/races/add");
             return mav;
         }
-//        Set<Technology> techs = new HashSet<Technology>();
-//        for (Technology t : race.getStartingTechnologies()) {
-//            techs.add(technologyRepository.findOne(t.getId()));
-//        }
-//        logger.debug("propose to replace {} with {}", new Object[]{race.getStartingTechnologies(), techs});
         race = raceService.create(race);
         mav.addObject("id", race.getId());
 
