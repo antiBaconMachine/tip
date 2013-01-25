@@ -3,6 +3,7 @@ package com.epicamble.tip.controller.admin;
 import com.epicamble.tip.controller.BaseController;
 import com.epicamble.tip.model.Race;
 import com.epicamble.tip.model.Technology;
+import com.epicamble.tip.model.TechnologyCustomCollectionEditor;
 import com.epicamble.tip.repository.TechnologyRepository;
 import com.epicamble.tip.service.RaceService;
 import com.epicamble.tip.util.UNIT_TYPE;
@@ -44,61 +45,14 @@ public class RaceController extends BaseController {
     private RaceService raceService;
     @Autowired
     private TechnologyRepository technologyRepository;
+    @Autowired
+    private TechnologyCustomCollectionEditor technologyCustomCollectionEditor;
 
     @InitBinder
     public void initBinderAll(final WebDataBinder binder) {
-
-        /**
-         * Technology editor
-         */
-        binder.registerCustomEditor(Set.class, "startingTechnologies",
-                new CustomCollectionEditor(Set.class) {
-                    
-                    @Override
-                    public void setAsText(String e) {
-                        logger.debug("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                        super.setAsText(e);
-                    }
-                    
-                    @Override
-                    protected Object convertElement(Object element) {
-                        if (element instanceof Technology) {
-                            logger.debug("We already have a technology");
-                            return element;
-                        }
-                        if (element instanceof String) {
-                            Long id = Long.parseLong((String) element);
-                            Technology tech = technologyRepository.findOne(id);
-                            logger.debug("Retrieved terchnology {}",tech);
-                            return tech;
-                        }
-                        logger.warn("Failed to convert technology {}", element);
-                        return null;
-                    }
-        });
+        binder.registerCustomEditor(Set.class, "startingTechnologies", technologyCustomCollectionEditor);
     }
     
-//    @InitBinder
-//    public void initBinderAll(final WebDataBinder binder) {
-//        /**
-//         * Technology editor
-//         */
-//        binder.registerCustomEditor(Technology.class, new PropertyEditorSupport() {
-//            @Override
-//            public void setAsText(String tech) {
-//                logger.debug("Converting string to technology {}", tech);
-//                Long l = Long.parseLong(tech);
-//                Technology technology = technologyRepository.findOne(l);
-//                if (technology != null) {
-//                    logger.debug("found technology {} for string key {}", new Object[]{technology, tech});
-//                    setValue(technology);
-//                }
-//                //setAsString(new String[]{tech});
-//            }
-//        });
-//                
-//    }
-
     @RequestMapping
     public ModelAndView list(@PageableDefaults(pageNumber = 0, value = 30) Pageable pageable) {
 //        if (pageable.getSort() == null) {
