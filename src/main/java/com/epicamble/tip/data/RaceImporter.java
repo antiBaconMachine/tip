@@ -39,10 +39,25 @@ public class RaceImporter {
     @Autowired
     private RaceService raceService;
     
+    @Value("${doImportOnStartup}")
+    protected boolean doImportOnStartup;
+    
     @PostConstruct
+    public void doImportOnStartup() throws IOException {
+        logger.debug("Checking whether to import races from json: {}",doImportOnStartup);
+        if (doImportOnStartup) {
+            importRaces();
+        }
+    }
+    
     public void importRaces() throws IOException {
+        logger.debug("Importing races from JSON");
         Set<Race> races = getRacesFromJSON();
         for (Race race : races) {
+            Race existing = raceService.findByName(race.getName());
+            if(existing != null) {
+                raceService.delete(existing.getId());
+            }
             raceService.create(race);
         }
     }

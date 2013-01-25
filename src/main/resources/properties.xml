@@ -14,14 +14,30 @@
                         http://www.springframework.org/schema/util 
                         http://www.springframework.org/schema/util/spring-util-3.1.xsd">
     
-       <!--TODO: make a sensible default set-->
-       <beans profile="dev, testing"> 
-            <context:property-placeholder location="classpath:dev.properties,
-                classpath:runtime.properties" />
-       </beans>
-       <beans profile="heroku">
-            <context:property-placeholder location="classpath:runtime.properties,
-                            classpath:heroku.properties" />
-       </beans>
+    <bean id="preferencePlaceHolder"
+          class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="locations" ref="propertiesLocations" />
+    </bean>
+    
+    <!--TODO: make a sensible default set-->
+    <beans profile="dev, testing">
+        <util:list id="propertiesLocations">
+            <value>classpath:runtime.properties</value>
+            <value>classpath:dev.properties</value>
+        </util:list>
+    </beans>
+    <beans profile="heroku">
+        <util:list id="propertiesLocations">
+            <value>classpath:runtime.properties</value>
+            <value>classpath:heroku.properties</value>
+        </util:list>
+    </beans>
+    <beans profile="testing">
+        <util:list id="propertiesLocations">
+            <value>classpath:runtime.properties</value>
+            <value>classpath:dev.properties</value>
+            <value>classpath:testing.properties</value>
+        </util:list>
+    </beans>
        
 </beans>

@@ -42,7 +42,7 @@
                 <entry key="hibernate.cache.use_second_level_cache" value="true"/>
                 <entry key="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
                 <entry key="hibernate.cache.use_query_cache" value="true"/>
-                <entry key="hibernate.hbm2ddl.auto" value="create-drop"/>
+                <entry key="hibernate.hbm2ddl.auto" value="update"/>
                 <entry key="hibernate.enable_lazy_load_no_trans" value="true" />
                 <entry key="javax.persistence.validation.factory" value-ref="validator" />
             </map>
@@ -56,6 +56,12 @@
 
     <util:property-path id="raceJsonFile" path="raceJson.file" />
     
+    <beans profile="testing">
+        <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+              p:generateDdl="true"
+              p:databasePlatform="org.hibernate.dialect.H2Dialect"/>
+        <jdbc:embedded-database id="dataSource" type="H2"/> 
+    </beans>
     <beans profile="dev,heroku">
         
         <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
@@ -76,12 +82,6 @@
               p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
     </beans>
     
-    <beans profile="testing">
-        
-        <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
-              p:generateDdl="true"
-              p:databasePlatform="org.hibernate.dialect.H2Dialect"/>
-        <jdbc:embedded-database id="dataSource" type="H2"/> 
-    </beans>
+    
 	
 </beans>
