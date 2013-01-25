@@ -2,8 +2,8 @@ package com.epicamble.tip.model;
 
 import com.epicamble.tip.util.UNIT_TYPE;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import org.springframework.util.AutoPopulatingList;
 
 /**
  *
@@ -27,7 +26,7 @@ public class Race extends AbstractPersistable<Long> {
     protected Map<UNIT_TYPE, Integer> startingUnits;
     
     @ManyToMany(cascade = CascadeType.ALL)
-    protected List<Technology> startingTechnologies = new AutoPopulatingList<Technology>(Technology.class);;
+    protected Set<Technology> startingTechnologies;
     
     //http://docs.jboss.org/hibernate/stable/annotations/reference/en/html/entity.html#entity-mapping-association-collections 2.2.5.3.1.1. 
     @OneToMany(cascade = CascadeType.ALL)
@@ -58,11 +57,11 @@ public class Race extends AbstractPersistable<Long> {
         this.startingUnits = startingUnits;
     }
 
-    public Collection<Technology> getStartingTechnologies() {
+    public Set<Technology> getStartingTechnologies() {
         return startingTechnologies;
     }
 
-    public void setStartingTechnologies(List<Technology> startingTechnologies) {
+    public void setStartingTechnologies(Set<Technology> startingTechnologies) {
         this.startingTechnologies = startingTechnologies;
     }
 

@@ -45,60 +45,59 @@ public class RaceController extends BaseController {
     @Autowired
     private TechnologyRepository technologyRepository;
 
-//    @InitBinder
-//    public void initBinderAll(final WebDataBinder binder) {
-//
-//        /**
-//         * Technology editor
-//         */
-//        binder.registerCustomEditor(Collection.class, 
-//                new CustomCollectionEditor(Collection.class) {
-//                    
-//                    @Override
-//                    public void setAsText(String e) {
-//                        logger.debug("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-//                        super.setAsText(e);
-//                    }
-//                    
-//                    @Override
-//                    protected Object convertElement(Object element) {
-//                        if (element instanceof Technology) {
-//                            logger.debug("We already have a technology");
-//                            return element;
-//                        }
-//                        if (element instanceof String) {
-//                            Long id = Long.parseLong((String) element);
-//                            Technology tech = technologyRepository.findOne(id);
-//                            logger.debug("Retrieved terchnology {}",tech);
-//                            return tech;
-//                        }
-//                        logger.warn("Failed to convert technology {}", element);
-//                        return null;
-//                    }
-//        });
-//    }
-    
     @InitBinder
     public void initBinderAll(final WebDataBinder binder) {
 
         /**
          * Technology editor
          */
-        binder.registerCustomEditor(Technology.class, new PropertyEditorSupport() {
-            @Override
-            public void setAsText(String tech) {
-                logger.debug("Converting string to technology {}", tech);
-                Long l = Long.parseLong(tech);
-                Technology technology = technologyRepository.findOne(l);
-                if (technology != null) {
-                    logger.debug("found technology {} for string key {}", new Object[]{technology, tech});
-                    setValue(technology);
-                }
-                //setAsString(new String[]{tech});
-            }
+        binder.registerCustomEditor(Set.class, 
+                new CustomCollectionEditor(Set.class) {
+                    
+                    @Override
+                    public void setAsText(String e) {
+                        logger.debug("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                        super.setAsText(e);
+                    }
+                    
+                    @Override
+                    protected Object convertElement(Object element) {
+                        if (element instanceof Technology) {
+                            logger.debug("We already have a technology");
+                            return element;
+                        }
+                        if (element instanceof String) {
+                            Long id = Long.parseLong((String) element);
+                            Technology tech = technologyRepository.findOne(id);
+                            logger.debug("Retrieved terchnology {}",tech);
+                            return tech;
+                        }
+                        logger.warn("Failed to convert technology {}", element);
+                        return null;
+                    }
         });
-                
     }
+    
+//    @InitBinder
+//    public void initBinderAll(final WebDataBinder binder) {
+//        /**
+//         * Technology editor
+//         */
+//        binder.registerCustomEditor(Technology.class, new PropertyEditorSupport() {
+//            @Override
+//            public void setAsText(String tech) {
+//                logger.debug("Converting string to technology {}", tech);
+//                Long l = Long.parseLong(tech);
+//                Technology technology = technologyRepository.findOne(l);
+//                if (technology != null) {
+//                    logger.debug("found technology {} for string key {}", new Object[]{technology, tech});
+//                    setValue(technology);
+//                }
+//                //setAsString(new String[]{tech});
+//            }
+//        });
+//                
+//    }
 
     @RequestMapping
     public ModelAndView list(@PageableDefaults(pageNumber = 0, value = 30) Pageable pageable) {
