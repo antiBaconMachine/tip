@@ -20,6 +20,23 @@
     <!-- Configures transaction management around @Transactional components -->
     <tx:annotation-driven transaction-manager="transactionManager" />
     
+       
+    <!-- data import sources. 
+
+    Originally I had these as simple @Value annotations but there is an issue in that
+    the webapp and unti tests have different classpaths. If we define them in the spring context then 
+    they are grabbed in a consistent manner
+    
+    TODO: I'd like to either find a way to get back to @Values or else at least just construct a resource
+    for the import dir here and pass that in
+    -->
+    <bean id="racesJson" class="org.springframework.core.io.ClassPathResource">
+        <constructor-arg value="/import/races.json" />
+    </bean>
+    <bean id="technologiesJson" class="org.springframework.core.io.ClassPathResource">
+        <constructor-arg value="/import/technologies.json" />
+    </bean>
+    
     <bean id="transactionManager"
           class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"
@@ -75,7 +92,5 @@
               p:user="#{ @dbUrl.getUserInfo().split(':')[0] }"
               p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
     </beans>
-    
-    
 	
 </beans>
