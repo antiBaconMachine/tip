@@ -10,5 +10,8 @@ public enum UNIT_TYPE {
     GROUND_FORCE,
     DREADNOUGHT,
     FIGHTER,
-    PDS
+    PDS,
+    CRUISER,
+    DESTROYER,
+    WAR_SUN
 }
