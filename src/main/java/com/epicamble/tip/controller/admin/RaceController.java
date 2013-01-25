@@ -66,7 +66,7 @@ public class RaceController extends BaseController {
         return mav;
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/create")
     public ModelAndView add() {
         ModelAndView mav = getMav("race/edit");
         Race race = new Race();
