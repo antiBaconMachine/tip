@@ -39,16 +39,16 @@
             <li>
                 <span>starting technologies</span>
                 <ul style="clear:right; overflow:auto">
-                    <spring:select path="startingTechnologies" multiple="true">
+                    
                     <c:forEach items="${technologies}" var="technology" varStatus="stat">
-<!--                        <li style="width: 200px; float:left">
+                        <li style="width: 200px; float:left">
                             <c:set var="id" value="chk${technology.name}" />
                             <label for="${id}">${technology.name}</label>
                             <input id="${id}" type="checkbox" name="startingTechnologies" value="${technology.id}"/>
-                        </li>-->
-                        <spring:option value="${technology.id}" label="${technology.name}"></spring:option>
+                        </li>
+                        
                     </c:forEach>
-                    </spring:select>
+                    
                 </ul>
             </li>
             <li>
