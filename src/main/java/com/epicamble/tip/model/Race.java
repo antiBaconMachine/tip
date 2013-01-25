@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.util.AutoPopulatingList;
 
 /**
  *
@@ -32,7 +33,7 @@ public class Race extends AbstractPersistable<Long> {
     //http://docs.jboss.org/hibernate/stable/annotations/reference/en/html/entity.html#entity-mapping-association-collections 2.2.5.3.1.1. 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="owningrace_id")
-    protected Collection<SpecialAbility> specialAbilities;
+    protected List<SpecialAbility> specialAbilities = new AutoPopulatingList<SpecialAbility>(SpecialAbility.class);
 
     public String getName() {
         return name;
@@ -66,11 +67,11 @@ public class Race extends AbstractPersistable<Long> {
         this.startingTechnologies = startingTechnologies;
     }
 
-    public Collection<SpecialAbility> getSpecialAbilities() {
+    public List<SpecialAbility> getSpecialAbilities() {
         return specialAbilities;
     }
 
-    public void setSpecialAbilities(Collection<SpecialAbility> specialAbilities) {
+    public void setSpecialAbilities(List<SpecialAbility> specialAbilities) {
         this.specialAbilities = specialAbilities;
     }
 

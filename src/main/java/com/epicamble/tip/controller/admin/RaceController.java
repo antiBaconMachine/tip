@@ -2,6 +2,7 @@ package com.epicamble.tip.controller.admin;
 
 import com.epicamble.tip.controller.BaseController;
 import com.epicamble.tip.model.Race;
+import com.epicamble.tip.model.SpecialAbility;
 import com.epicamble.tip.model.Technology;
 import com.epicamble.tip.model.TechnologyCustomCollectionEditor;
 import com.epicamble.tip.repository.TechnologyRepository;

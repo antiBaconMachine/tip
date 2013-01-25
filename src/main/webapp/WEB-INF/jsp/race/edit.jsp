@@ -51,21 +51,16 @@
                 </ul>
             </li>
             <li>
-<!--                <span>Special Abilites</span>
+                <span>Special Abilites</span>
                 <ul>
-                    <li>
-                        <textarea name="specialAbilities"></textarea>
-                    </li>
-                    <li>
-                        <textarea name="specialAbilities"></textarea>
-                    </li>
-                    <li>
-                        <textarea name="specialAbilities"></textarea>
-                    </li>
-                    <li>
-                        <textarea name="specialAbilities"></textarea>
-                    </li>
-                </ul>-->
+                    <!--TODO dynamic add new fields as needed-->
+                    <c:forEach begin="0" end="3" var="i">
+                        <li>
+                            <input type="hidden" value="${specialAbilities[i]}.id" name="specialAbilities[${i}].id" />
+                            <textarea name="specialAbilities[${i}].description">${specialAbilities[i]}</textarea>
+                        </li>
+                    </c:forEach>
+                </ul>
             </li>
         </ul>
         <input id="submit" type="submit" class="btn btn-primary" value="Save">
