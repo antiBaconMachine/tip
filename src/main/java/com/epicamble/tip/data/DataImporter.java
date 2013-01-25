@@ -20,72 +20,97 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 /**
- * Imports race information from json.
- * 
+ * Imports seed data from json.
+ *
  * Used to populate both in memory testing database and live database
+ *
  * @author Ollie Edwards <oliver.s.edwards@gmail.com>
  */
 @Component
-public class RaceImporter {
-    
-    private final static Logger logger = LoggerFactory.getLogger(RaceImporter.class);
-    
+public class DataImporter {
+
+    private final static Logger logger = LoggerFactory.getLogger(DataImporter.class);
     @Autowired
-    private ObjectMapper objectMapper; 
-    
-    @Autowired
-    @Qualifier("raceJsonFile")
-    private File jsonFile;
-    
+    private ObjectMapper objectMapper;
+    @Value("${classpath:import/races.json}")
+    private Resource raceJson;
+    @Value("${classPath:import/technologies.json}")
+    private Resource technologyJson;
     @Autowired
     private RaceService raceService;
-    
     @Autowired
     private TechnologyRepository technologyRepository;
-    
     @Value("${doImportOnStartup}")
     protected boolean doImportOnStartup;
-    
+
     @PostConstruct
     public void doImportOnStartup() throws IOException {
-        logger.debug("Checking whether to import races from json: {}",doImportOnStartup);
+        logger.debug("Checking whether to import data from json: {}", doImportOnStartup);
         if (doImportOnStartup) {
-            importRaces();
+            importAll();
         }
     }
     
+    public void importAll() throws IOException {
+        importTechnology();
+        importRaces();
+    }
+
+    public void importTechnology() throws IOException {
+        logger.debug("Importing technologies from JSON");
+        Set<Technology> technologies = getTechnologyFromJSON();
+        for (Technology t : technologies) {
+            Technology exisitingTech = technologyRepository.findByName(t.getName());
+            if (exisitingTech == null) {
+                technologyRepository.save(t);
+            }
+        }
+    }
+
     public void importRaces() throws IOException {
         logger.debug("Importing races from JSON");
         Set<Race> races = getRacesFromJSON();
         for (Race race : races) {
             Race existingRace = raceService.findByName(race.getName());
-            if(existingRace != null) {
+            if (existingRace != null) {
                 raceService.delete(existingRace.getId());
             }
             Set<Technology> techs = new HashSet<Technology>();
             for (Technology t : race.getStartingTechnologies()) {
-                Technology exisitingTech = technologyRepository.findByName(t.getName());
-                if (exisitingTech != null) {
-                    if (!exisitingTech.getOwningRaces().contains(race)) {
-                        exisitingTech.getOwningRaces().add(race);
-                    }
-                    techs.add(exisitingTech);
-                } else {
+//                Technology exisitingTech = technologyRepository.findByName(t.getName());
+//                if (exisitingTech != null) {
+//                    if (!exisitingTech.getOwningRaces().contains(race)) {
+//                        exisitingTech.getOwningRaces().add(race);
+//                    }
+//                    techs.add(exisitingTech);
+//                } else {
+//                    techs.add(t);
+//                }
                     techs.add(t);
-                }
             }
             race.setStartingTechnologies(techs);
             raceService.create(race);
         }
     }
-    
+
+    public Set<Technology> getTechnologyFromJSON() throws IOException {
+        FileInputStream fis = new FileInputStream(technologyJson.getFile());
+        Set<Technology> technologies;
+        technologies = objectMapper.readValue(fis, new TypeReference<Set<Technology>>() {
+        });
+        logger.debug("read technologies {}", technologies);
+        return technologies;
+    }
+
     public Set<Race> getRacesFromJSON() throws FileNotFoundException, IOException {
-        FileInputStream fis = new FileInputStream(jsonFile);
+        FileInputStream fis = new FileInputStream(raceJson.getFile());
         Set<Race> races;
-        races = objectMapper.readValue(fis, new TypeReference<Set<Race>>(){});
+        races = objectMapper.readValue(fis, new TypeReference<Set<Race>>() {
+        });
         logger.debug("read races {}", races);
         return races;
     }

@@ -1,5 +1,6 @@
 package com.epicamble.tip.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -17,7 +18,7 @@ public class Technology extends AbstractPersistable<Long> {
     protected String description;
     
     @ManyToMany(mappedBy="startingTechnologies")
-    protected Collection<Race> owningRaces;
+    protected Collection<Race> owningRaces = new ArrayList<Race>();
 
     public String getName() {
         return name;

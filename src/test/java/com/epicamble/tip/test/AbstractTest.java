@@ -1,6 +1,6 @@
 package com.epicamble.tip.test;
 
-import com.epicamble.tip.data.RaceImporter;
+import com.epicamble.tip.data.DataImporter;
 import com.epicamble.tip.model.Race;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,13 +24,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public abstract class AbstractTest extends TestCase{
     
     @Autowired
-    protected RaceImporter raceImporter;
+    protected DataImporter dataImporter;
     
     private Collection<Race> races;
             
     public Collection<Race> getRacesFromJson() throws FileNotFoundException, IOException {
         if (races == null) {
-            races = raceImporter.getRacesFromJSON();
+            races = dataImporter.getRacesFromJSON();
         }
         return races;
     }

@@ -50,12 +50,6 @@
         <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
     </bean>
     
-    <bean id="raceJson" class="org.springframework.core.io.ClassPathResource">
-        <constructor-arg value="/races.js" />
-    </bean>
-
-    <util:property-path id="raceJsonFile" path="raceJson.file" />
-    
     <beans profile="testing">
         <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
               p:generateDdl="true"

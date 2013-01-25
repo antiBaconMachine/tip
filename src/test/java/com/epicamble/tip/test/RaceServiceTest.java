@@ -4,7 +4,7 @@ import com.epicamble.tip.model.Race;
 import com.epicamble.tip.service.RaceService;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Set;
+import java.util.Collection;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class RaceServiceTest extends AbstractTest {
     
     @Test
     public void testFindByName() throws FileNotFoundException, IOException {
-        Set<Race> racesFromJson = raceImporter.getRacesFromJSON();
+        Collection<Race> racesFromJson = getRacesFromJson();
         Race testRace = racesFromJson.iterator().next();
         Race race = raceService.findByName(testRace.getName());
         assertNotNull(race);
