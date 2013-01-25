@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.util.AutoPopulatingList;
 
@@ -19,7 +20,7 @@ import org.springframework.util.AutoPopulatingList;
  * @author Ollie Edwards <oliver.s.edwards@gmail.com>
  */
 @Entity
-public class Race extends AbstractPersistable<Long> {
+public class Race extends AbstractEntity<Long> {
     
     protected String name;
     protected String description;

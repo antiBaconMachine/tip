@@ -34,7 +34,7 @@ public class RaceServiceImpl implements RaceService {
 
     @Override
     public Race update(Race race) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return raceRepository.save(race);
     }
 
     @Override

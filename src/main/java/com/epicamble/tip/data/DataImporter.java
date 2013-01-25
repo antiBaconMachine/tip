@@ -88,8 +88,16 @@ public class DataImporter {
                     techs.add(t);
                 }
             }
-            race.setStartingTechnologies(techs);
+            race.setStartingTechnologies(null);
             raceService.create(race);
+            /**
+             * If we try and create the entity with exisiting techs we get detached entity exception
+             * so instead we do in two steps
+             * 
+             * TODO: prob a better way to do this
+             */
+            race.setStartingTechnologies(techs);
+            raceService.update(race);
         }
     }
 

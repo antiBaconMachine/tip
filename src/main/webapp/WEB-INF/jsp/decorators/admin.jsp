@@ -21,7 +21,7 @@
     <a class="brand" href="#">TIP Admin</a>
     <ul class="nav">
       <li><a href="/">Home</a></li>
-      <li><a href="/admin/race/create">Create</a></li>
+      <li><a href="/admin/races/create">Create</a></li>
 <!--        <li><a href="/j_spring_security_logout">Log Out</a></li>-->
     </ul>
   </div>

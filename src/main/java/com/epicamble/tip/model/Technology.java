@@ -12,7 +12,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  * @author Ollie Edwards <oliver.s.edwards@gmail.com>
  */
 @Entity
-public class Technology extends AbstractPersistable<Long> {
+public class Technology extends AbstractEntity<Long> {
     
     protected String name;
     protected String description;

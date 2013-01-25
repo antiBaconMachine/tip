@@ -1,24 +1,55 @@
-[{
-    "name" : "The Lizix Mindnet",
-    "description" : "Basically the Borg",
-    "startingUnits" : 
+[
     {
-        "SPACE_DOCK" : 1,
-        "CARRIER"    : 1
-    },
-    "startingTechnologies" : [
-    {
-        "name" : "Enviro Compensator",
-        "description" : ""
-    },
-    {
-        "name" : "Stasis Capsules",
-        "description" : ""
+
+        "name": "Universities of Jol-nar",
+        "description": "Tech Specialists",
+        "startingUnits": {
+            "FIGHTER": 1,
+            "PDS": 2,
+            "GROUND_FORCE": 2,
+            "SPACE_DOCK": 1,
+            "DREADNOUGHT": 1,
+            "CARRIER": 2
+        },
+        "startingTechnologies": [
+            {
+
+                "name": "Antimass Deflectors",
+                "description": ""
+            },
+            {
+
+                "name": "Enviro Compensator",
+                "description": ""
+            },
+            {
+
+                "name": "Hylar V Assault Laser",
+                "description": ""
+            },
+            {
+
+                "name": "Sarween Tools",
+                "description": ""
+            }
+        ],
+        "specialAbilities": [
+            {
+
+                "description": "You receive -1 on your combat rolls during all space battles and invasion combat."
+            },
+            {
+
+                "description": "When executing the secondary ability of the technology strategy, you may execute both it's primary ability and secondary ability."
+            },
+            {
+
+                "description": "You may spend a command counter from your strategy allocation, to immediately re-roll any of your die rolls."
+            },
+            {
+
+                "description": ""
+            }
+        ]
     }
-    ],
-    "specialAbilities" : [
-    {
-        "description" : "The base cost of your Dreadnought unit starts at 4"
-    }
-    ]
-}]
+]
