@@ -14,30 +14,54 @@
                         http://www.springframework.org/schema/util 
                         http://www.springframework.org/schema/util/spring-util-3.1.xsd">
     
-    <bean id="preferencePlaceHolder"
-          class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
-        <property name="locations" ref="propertiesLocations" />
+    
+    <!--Default properties for all profiles-->
+    <bean id="parentProperties" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list>
+                <value>classpath:runtime.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="devProperties" parent="parentProperties" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list merge="true">
+                <value>classpath:dev.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="testProperties" parent="devProperties" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list merge="true">
+                <value>classpath:testing.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="herokuProperties" parent="parentProperties" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="sourceList">
+            <list merge="true">
+                <value>classpath:heroku.properties</value>
+            </list>
+        </property>
     </bean>
     
-    <!--TODO: make a sensible default set-->
-    <beans profile="dev, testing">
-        <util:list id="propertiesLocations">
-            <value>classpath:runtime.properties</value>
-            <value>classpath:dev.properties</value>
-        </util:list>
-    </beans>
-    <beans profile="heroku">
-        <util:list id="propertiesLocations">
-            <value>classpath:runtime.properties</value>
-            <value>classpath:heroku.properties</value>
-        </util:list>
+    <beans profile="dev">
+        <bean id="preferencePlaceHolder"
+              class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+            <property name="locations" ref="devProperties" />
+        </bean>
     </beans>
     <beans profile="testing">
-        <util:list id="propertiesLocations">
-            <value>classpath:runtime.properties</value>
-            <value>classpath:dev.properties</value>
-            <value>classpath:testing.properties</value>
-        </util:list>
+        <bean id="preferencePlaceHolder"
+              class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+            <property name="locations" ref="testProperties" />
+        </bean>
+    </beans>
+    <beans profile="heroku">
+        <bean id="preferencePlaceHolder"
+              class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+            <property name="locations" ref="herokuProperties" />
+        </bean>
     </beans>
        
 </beans>

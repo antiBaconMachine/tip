@@ -1,11 +1,15 @@
 package com.epicamble.tip.data;
 
 import com.epicamble.tip.model.Race;
+import com.epicamble.tip.model.Technology;
+import com.epicamble.tip.repository.TechnologyRepository;
 import com.epicamble.tip.service.RaceService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -39,6 +43,9 @@ public class RaceImporter {
     @Autowired
     private RaceService raceService;
     
+    @Autowired
+    private TechnologyRepository technologyRepository;
+    
     @Value("${doImportOnStartup}")
     protected boolean doImportOnStartup;
     
@@ -54,10 +61,23 @@ public class RaceImporter {
         logger.debug("Importing races from JSON");
         Set<Race> races = getRacesFromJSON();
         for (Race race : races) {
-            Race existing = raceService.findByName(race.getName());
-            if(existing != null) {
-                raceService.delete(existing.getId());
+            Race existingRace = raceService.findByName(race.getName());
+            if(existingRace != null) {
+                raceService.delete(existingRace.getId());
             }
+            Set<Technology> techs = new HashSet<Technology>();
+            for (Technology t : race.getStartingTechnologies()) {
+                Technology exisitingTech = technologyRepository.findByName(t.getName());
+                if (exisitingTech != null) {
+                    if (!exisitingTech.getOwningRaces().contains(race)) {
+                        exisitingTech.getOwningRaces().add(race);
+                    }
+                    techs.add(exisitingTech);
+                } else {
+                    techs.add(t);
+                }
+            }
+            race.setStartingTechnologies(techs);
             raceService.create(race);
         }
     }
