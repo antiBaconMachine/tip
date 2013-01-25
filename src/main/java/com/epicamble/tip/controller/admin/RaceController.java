@@ -51,7 +51,7 @@ public class RaceController extends BaseController {
         /**
          * Technology editor
          */
-        binder.registerCustomEditor(Set.class, 
+        binder.registerCustomEditor(Set.class, "startingTechnologies",
                 new CustomCollectionEditor(Set.class) {
                     
                     @Override

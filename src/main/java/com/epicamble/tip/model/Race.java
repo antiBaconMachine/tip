@@ -2,6 +2,7 @@ package com.epicamble.tip.model;
 
 import com.epicamble.tip.util.UNIT_TYPE;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.persistence.CascadeType;

@@ -46,7 +46,6 @@
                             <label for="${id}">${technology.name}</label>
                             <input id="${id}" type="checkbox" name="startingTechnologies" value="${technology.id}"/>
                         </li>
-                        
                     </c:forEach>
                     
                 </ul>
