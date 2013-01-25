@@ -77,11 +77,11 @@ public class Race extends AbstractPersistable<Long> {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + (this.name != null ? this.name.hashCode() : 0);
-        hash = 59 * hash + (this.description != null ? this.description.hashCode() : 0);
-        hash = 59 * hash + (this.startingUnits != null ? this.startingUnits.hashCode() : 0);
-        hash = 59 * hash + (this.startingTechnologies != null ? this.startingTechnologies.hashCode() : 0);
-        hash = 59 * hash + (this.specialAbilities != null ? this.specialAbilities.hashCode() : 0);
+        hash = 13 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 13 * hash + (this.description != null ? this.description.hashCode() : 0);
+        hash = 13 * hash + (this.startingUnits != null ? this.startingUnits.hashCode() : 0);
+        hash = 13 * hash + (this.startingTechnologies != null ? this.startingTechnologies.hashCode() : 0);
+        hash = 13 * hash + (this.specialAbilities != null ? this.specialAbilities.hashCode() : 0);
         return hash;
     }
 
@@ -111,7 +111,7 @@ public class Race extends AbstractPersistable<Long> {
         }
         return true;
     }
-
+    
     @Override
     public String toString() {
         return "Race{" + "name=" + name + 

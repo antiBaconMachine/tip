@@ -8,6 +8,7 @@ import com.epicamble.tip.service.RaceService;
 import com.epicamble.tip.util.UNIT_TYPE;
 import java.beans.PropertyEditorSupport;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,17 +45,25 @@ public class RaceController extends BaseController {
     private TechnologyRepository technologyRepository;
 
     
-//    @InitBinder
-//    public void initBinder(final WebDataBinder binder) {
-//
-//        /**
-//         * Technology editor
-//         */
-//        binder.registerCustomEditor(Technology.class, new PropertyEditorSupport() {
-//            public void setAsString(String tech) {
-//                logger.debug("ZZZZZZZZZZZZZZZZZZZZZZZZzz");
-//                setAsString(new String[]{tech});
-//            }
+    @InitBinder
+    public void initBinderAll(final WebDataBinder binder) {
+
+        /**
+         * Technology editor
+         */
+        binder.registerCustomEditor(Collection.class, "startingTechnology", new PropertyEditorSupport() {
+            
+            @Override
+            public void setAsText(String tech) {
+                logger.debug("Converting string to technology {}",tech);
+                Long l = Long.parseLong(tech);
+                Technology technology = technologyRepository.findOne(l);
+                if (technology != null) {
+                    logger.debug("found technology {} for string key {}", new Object[]{technology, tech});
+                    setValue(technology);
+                }
+                //setAsString(new String[]{tech});
+            }
 //            public void setAsString(String[] technologies) {
 //                logger.debug("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 //                Set<Technology> techs = new HashSet<Technology>();
@@ -67,8 +76,8 @@ public class RaceController extends BaseController {
 //                }
 //                setValue(techs);
 //            }
-//        });
-//    }
+        });
+    }
 
     @RequestMapping
     public ModelAndView list(@PageableDefaults(pageNumber = 0, value = 30) Pageable pageable) {
@@ -93,7 +102,7 @@ public class RaceController extends BaseController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView create(@ModelAttribute Race race, BindingResult result, RedirectAttributes redirectAttributes) {
+    public ModelAndView create(@ModelAttribute("race") Race race, BindingResult result, RedirectAttributes redirectAttributes) {
         ModelAndView mav = new ModelAndView("redirect:/admin/races");
         logger.debug("Creating new race {} with binding result {}", new Object[]{race, result});
         if (result.hasErrors()) {
