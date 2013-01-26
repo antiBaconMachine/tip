@@ -44,20 +44,20 @@ public class DataImporter {
     protected boolean doImportOnStartup;
 
     @PostConstruct
-    public void doImportOnStartup() throws IOException {
-        logger.debug("Checking whether to import data from json: {}", doImportOnStartup);
+    public void doImportOnStartup() throws IOException, InterruptedException {
+        logger.info("Checking whether to import data from json: {}", doImportOnStartup);
         if (doImportOnStartup) {
             importAll();
         }
     }
-    
-    public void importAll() throws IOException {
+
+    public void importAll() throws IOException, InterruptedException {
         importTechnology();
         importRaces();
     }
 
     public void importTechnology() throws IOException {
-        logger.debug("Importing technologies from JSON");
+        logger.info("Importing technologies from JSON");
         Set<Technology> technologies = getTechnologyFromJSON();
         for (Technology t : technologies) {
             Technology exisitingTech = technologyRepository.findByName(t.getName());
@@ -67,19 +67,24 @@ public class DataImporter {
         }
     }
 
-    public void importRaces() throws IOException {
-        logger.debug("Importing races from JSON");
+    public void importRaces() throws IOException, InterruptedException {
+        logger.info("Importing races from JSON");
         Set<Race> races = getRacesFromJSON();
         for (Race race : races) {
+            logger.debug("Iterating race {}", race);
             Race existingRace = raceService.findByName(race.getName());
             if (existingRace != null) {
+                logger.debug("found exisiting race with same name race {}", existingRace);
                 raceService.delete(existingRace.getId());
             }
             Set<Technology> techs = new HashSet<Technology>();
             for (Technology t : race.getStartingTechnologies()) {
+                logger.debug("Iterating technology {}", t);
                 Technology exisitingTech = technologyRepository.findByName(t.getName());
                 if (exisitingTech != null) {
+                    logger.debug("Found exisiting tech {}", exisitingTech);
                     if (!exisitingTech.getOwningRaces().contains(race)) {
+                        logger.debug("adding new owning race ");
                         exisitingTech.getOwningRaces().add(race);
                     }
                     techs.add(exisitingTech);
@@ -89,15 +94,18 @@ public class DataImporter {
                 }
             }
             race.setStartingTechnologies(null);
+            logger.debug("creating new race {}", race);
             raceService.create(race);
             /**
-             * If we try and create the entity with exisiting techs we get detached entity exception
-             * so instead we do in two steps
-             * 
+             * If we try and create the entity with existing techs we get
+             * detached entity exception so instead we do in two steps
+             *
              * TODO: prob a better way to do this
              */
             race.setStartingTechnologies(techs);
+            logger.debug("updating race {}", race);
             raceService.update(race);
+            logger.debug("completed iteration {}", race);
         }
     }
 
@@ -106,7 +114,7 @@ public class DataImporter {
         Set<Technology> technologies;
         technologies = objectMapper.readValue(fis, new TypeReference<Set<Technology>>() {
         });
-        logger.debug("read technologies {}", technologies);
+        logger.info("read technologies {}", technologies);
         return technologies;
     }
 
@@ -115,7 +123,8 @@ public class DataImporter {
         Set<Race> races;
         races = objectMapper.readValue(fis, new TypeReference<Set<Race>>() {
         });
-        logger.debug("read races {}", races);
+        //logger.debug("read races {}", races);
+        logger.info("read races");
         return races;
     }
 }

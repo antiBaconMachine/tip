@@ -174,7 +174,7 @@
         "specialAbilities": [
             {
 
-                "description": "Before any Combat Round, you may spend 2 TG's to give all your ships +1, or all your GF's +2, on their Combat Rolls for that Combat Round."
+                "description": "Before any Combat Round, you may spend 2 TGs to give all your ships +1, or all your GFs +2, on their Combat Rolls for that Combat Round."
             },
             {
 
@@ -238,7 +238,7 @@
     },
     {
 
-        "name": "Sardakk N'orr",
+        "name": "Sardakk Norr",
         "description": "",
         "startingUnits": {
             "CRUISER": 1,
@@ -460,7 +460,7 @@
         "specialAbilities": [
             {
 
-                "description": "Once during every Stratage Phase, you may look at one other players' hand of Action Cards."
+                "description": "Once during every Stratage Phase, you may look at one other players hand of Action Cards."
             },
             {
 

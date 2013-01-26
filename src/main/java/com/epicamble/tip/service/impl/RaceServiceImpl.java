@@ -39,7 +39,7 @@ public class RaceServiceImpl implements RaceService {
 
     @Override
     public void delete(long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        raceRepository.delete(id);
     }
 
     @Override

@@ -19,7 +19,7 @@
         <jdk.version>1.6</jdk.version>
         <ehcache-core.version>2.4.7</ehcache-core.version>
         <ehcache-web.version>2.0.3</ehcache-web.version>
-        <hibernate.version>4.1.6.Final</hibernate.version>
+        <hibernate.version>4.1.9.Final</hibernate.version>
         <spring.version>3.1.2.RELEASE</spring.version>
         <spring-social.version>1.0.2.RELEASE</spring-social.version>
         <spring-social-twitter.version>1.0.2.RELEASE</spring-social-twitter.version>
@@ -38,9 +38,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>c3p0</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.1.2</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${hibernate.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
