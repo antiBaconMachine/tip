@@ -19,11 +19,8 @@
         <div class="container-fluid" id="container">
             <div class="span12 row-fluid" id="header">
                 <div id="titleWrapper" class="span7">
-                    <div class="span2" id="logo">
-                        
-                    </div>
-                    <div class="span5" id="title">
-                        <h1><a href="/" id="homeLink" class="routeTrigger">Twilight Imperium Race Pciker</a></h1>
+                    <div class="span7" id="title">
+                        <h1><a href="/" id="homeLink" class="routeTrigger">Twilight Imperium Race Picker</a></h1>
                     </div>
                 </div>
                 <div class="span2">&nbsp;</div>
