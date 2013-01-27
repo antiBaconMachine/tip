@@ -23,7 +23,24 @@
                 </div>
             </div>
             <div class="span3 sidebar">
+                <a href="/match">Create new match</a>
 
+                <div id="login" >
+                    <!--p>Login with one of the following providers:</p-->
+                    <form id="twitterSignin" class="signin" action="signin/twitter" method="POST">
+                        <p>
+                            <input type="image" src="images/social/twitter_signin.png" 
+                                   title="Sign in with Twitter" />
+                        </p>
+                    </form>
+<!--                    <form id="facebookSignin" class="signin" action="signin/facebook" method="POST">
+                        <p>
+                            <input type="image" src="images/social/facebook_signin.png" 
+                                   title="Sign in with Facebook" />
+                        </p>
+                    </form>-->
+
+                </div>
             </div> <!-- sidebar end-->
         </div>
         <script type="text/javascript">

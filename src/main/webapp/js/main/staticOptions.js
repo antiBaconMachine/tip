@@ -7,5 +7,5 @@ define({
     bootstrappedModels : {},
     username : "username",
     pushState : true,
-    defaultView : "browse",
+    defaultView : "browse"
 });

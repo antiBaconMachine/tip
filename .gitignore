@@ -7,3 +7,4 @@ application.log*
 /src/main/webapp/js/build
 logs/*
 *.log
+src/main/resources/secret.properties

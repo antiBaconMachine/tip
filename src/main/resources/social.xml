@@ -15,7 +15,7 @@
         <aop:scoped-proxy proxy-target-class="false" />
     </bean>
     
-    <bean id="accountConnectionSignUp" class="uk.co.codingcraft.pubs.security.AccountConnectionSignUp" />
+    <bean id="accountConnectionSignUp" class="com.epicamble.tip.security.AccountConnectionSignUp" />
     
     <bean id="connectionFactoryLocator" class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
         <property name="connectionFactories">
@@ -24,10 +24,10 @@
                     <constructor-arg value="${twitter.consumerKey}" />
                     <constructor-arg value="${twitter.consumerSecret}" />
                 </bean>
-                <bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+<!--                <bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
                     <constructor-arg value="${facebook.clientId}" />
                     <constructor-arg value="${facebook.clientSecret}" />
-                </bean>
+                </bean>-->
             </list>
         </property>
         <aop:scoped-proxy proxy-target-class="false" />
@@ -38,7 +38,7 @@
         <aop:scoped-proxy proxy-target-class="false" />
     </bean>
     
-    <bean id="socialAuthenticationProvider" class="uk.co.codingcraft.pubs.security.SocialAuthenticationProvider" />
+    <bean id="socialAuthenticationProvider" class="com.epicamble.tip.security.SocialAuthenticationProvider" />
     
 <!--
     Heroku doesn't support 256 bit AES so we can't use the provided spring security encryptors
@@ -55,7 +55,7 @@
     </beans>-->
     
     
-    <bean id="textEncryptor" class="uk.co.codingcraft.pubs.security.SocialSecretEncryptor">
+    <bean id="textEncryptor" class="com.epicamble.tip.security.SocialSecretEncryptor">
         <constructor-arg value="${security.encryptPassword}" />
         <!--constructor-arg value="${security.encryptSalt}" /-->
     </bean>

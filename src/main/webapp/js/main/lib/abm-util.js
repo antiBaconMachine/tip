@@ -1,7 +1,7 @@
 define({
     getUrlParams : function() {
         var vars = {}, hash;
-        var hashes = window.location.href.slice(window.location.search.indexOf('?') + 1).split('&');
+        var hashes = window.location.search.substr(1).split('&');
         for(var i = hashes.length-1; i >= 0; i--)
         {
             hash = hashes[i].split('=');

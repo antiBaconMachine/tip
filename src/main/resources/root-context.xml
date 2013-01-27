@@ -15,10 +15,10 @@
     <import resource="classpath:data.xml" />
 
     <!-- Configures Shared Social Connection Configuration -->
-<!--    <import resource="social.xml" />-->
+    <import resource="social.xml" />
 
     <!-- Configures Shared Security Layer -->
-<!--    <import resource="security.xml" />-->
+    <import resource="security.xml" />
         
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
     <bean id="jacksonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
