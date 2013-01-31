@@ -1,5 +1,6 @@
 package com.epicamble.tip.controller;
 
+import com.epicamble.tip.model.Match;
 import java.io.IOException;
 import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
@@ -26,19 +27,6 @@ public class HomeController extends BaseController {
     @RequestMapping(value= {"", "list"}, method = RequestMethod.GET)
     public ModelAndView showHome(final HttpServletRequest request, @NotNull Principal principal) throws IOException {
         return this.getMav("home");
-    }
-    
-    @RequestMapping(value="match", method = RequestMethod.GET)
-    public ModelAndView newMatch(final HttpServletRequest request, @NotNull Principal principal) {
-        return this.getMav("newMatch");
-    }
-    
-    @RequestMapping(value="match/{id}", method = RequestMethod.GET)
-    public ModelAndView showMatch(final HttpServletRequest request, 
-            @NotNull Principal principal,
-            @PathVariable String id) {
-        
-        return this.getMav("match");
     }
 
 }

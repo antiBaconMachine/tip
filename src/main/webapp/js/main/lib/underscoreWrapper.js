@@ -3,11 +3,9 @@
  * any templates with the defaults
  */
 define(['underscoreSource'], function(_) {
-    
     _.templateSettings = {
         interpolate: /{{\=(.+?)}}/gim,
         evaluate: /{{(.+?)}}/gim
     };
-    
     return _;
 })

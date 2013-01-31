@@ -30,4 +30,9 @@ public class RaceServiceTest extends AbstractTest {
         assertEquals(testRace, race);
     }
     
+    @Test
+    public void testFindNRandomRaces() {
+        
+    }
+    
 }

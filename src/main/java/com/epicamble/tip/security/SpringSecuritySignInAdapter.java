@@ -1,10 +1,10 @@
 package com.epicamble.tip.security;
 
 import com.epicamble.tip.model.User;
-import com.sun.istack.internal.Nullable;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

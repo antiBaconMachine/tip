@@ -10,7 +10,8 @@
         text     :  "lib/text"
     },
     modules: [
-        {name: "main"}
+        {name: "main"},
+        {name: "main-player"}
     ],
     removeCombined : true,
     optimize : "closure",

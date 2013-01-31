@@ -66,6 +66,5 @@
         <input id="submit" type="submit" class="btn btn-primary" value="Save">
         <a href="/admin/races/${race.id}" class="btn">Cancel</a>
     </spring:form>
-    <h1>${actionUrl}</h1>
 </body>
 </html>

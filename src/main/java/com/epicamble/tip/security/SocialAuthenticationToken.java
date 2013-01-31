@@ -1,7 +1,7 @@
 package com.epicamble.tip.security;
 
-import com.sun.istack.internal.Nullable;
 import java.util.Collection;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

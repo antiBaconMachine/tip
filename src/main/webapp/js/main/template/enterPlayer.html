@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <ul class="racePicker">
+            {{ _.each(races, function(race) { }} 
+            <li id="race_{{= race.id }}">
+                <input type="hidden" id="raceId" value="{{= race.id }}" />
+                <a href="#" class="raceSelect">
+                    {{= race.name }} 
+                </a>
+            </li>
+            {{}); }}
+        </ul>
+    </body>
+</html>
