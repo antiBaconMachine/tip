@@ -16,8 +16,8 @@ define(function(require) {
         initialize : function($listElement, model) {
             this.$listElement = $listElement;
             this.model =  model;
-            //TODO this is made of nightmare, fix it
-            this.bind("sync", model.get("matchView").model.fetch, model.get("matchView").model);
+            var matchModel = model.get("matchView").model;
+            this.bind("sync", matchModel.fetch, matchModel);
             _.bindAll(this);
         },
         
