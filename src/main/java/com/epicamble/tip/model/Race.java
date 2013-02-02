@@ -116,11 +116,7 @@ public class Race extends AbstractEntity<Long> {
     
     @Override
     public String toString() {
-        return "Race{" + "name=" + name + 
-                ", description=" + description + 
-                ", startingUnits=" + startingUnits + 
-                ", startingTechnologies=" + startingTechnologies + 
-                ", specialAbilities=" + specialAbilities + '}';
+        return "Race{" + name + "}";
     }
     
     

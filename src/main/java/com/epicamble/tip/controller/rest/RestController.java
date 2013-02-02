@@ -29,7 +29,7 @@ public class RestController {
         return raceService.findAll();
     }
     
-    @RequestMapping(value="/match/{id}/raceSelection", method = RequestMethod.GET)
+    @RequestMapping(value="/match/{matchId}/raceSelection", method = RequestMethod.GET)
     public @ResponseBody List<Race> getRaceSelectionForMatch(@PathVariable String matchId) {
         return matchService.getRaceSelection(matchId);
     }

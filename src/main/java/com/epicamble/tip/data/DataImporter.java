@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -69,7 +70,7 @@ public class DataImporter {
 
     public void importRaces() throws IOException, InterruptedException {
         logger.info("Importing races from JSON");
-        Set<Race> races = getRacesFromJSON();
+        List<Race> races = getRacesFromJSON();
         for (Race race : races) {
             logger.debug("Iterating race {}", race);
             Race existingRace = raceService.findByName(race.getName());
@@ -118,10 +119,10 @@ public class DataImporter {
         return technologies;
     }
 
-    public Set<Race> getRacesFromJSON() throws FileNotFoundException, IOException {
+    public List<Race> getRacesFromJSON() throws FileNotFoundException, IOException {
         FileInputStream fis = new FileInputStream(racesJson.getFile());
-        Set<Race> races;
-        races = objectMapper.readValue(fis, new TypeReference<Set<Race>>() {
+        List<Race> races;
+        races = objectMapper.readValue(fis, new TypeReference<List<Race>>() {
         });
         //logger.debug("read races {}", races);
         logger.info("read races");

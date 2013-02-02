@@ -6,6 +6,8 @@ import com.epicamble.tip.repository.MatchRepository;
 import com.epicamble.tip.repository.RaceRepository;
 import com.epicamble.tip.service.MatchService;
 import java.util.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MatchServiceImpl implements MatchService {
+    
+    Logger logger = LoggerFactory.getLogger(MatchServiceImpl.class);
 
     @Autowired
     private MatchRepository matchRepository;
@@ -38,7 +42,11 @@ public class MatchServiceImpl implements MatchService {
             }
         }
         Collections.shuffle(races);
-        return races.subList(0, 2);
+        if (races.size() > 3) {
+            return races.subList(0, 3);
+        } else {
+            return races;
+        }
     }
 
 }

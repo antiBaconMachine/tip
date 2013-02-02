@@ -5,6 +5,7 @@ import com.epicamble.tip.model.Race;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -26,9 +27,9 @@ public abstract class AbstractTest extends TestCase{
     @Autowired
     protected DataImporter dataImporter;
     
-    private Collection<Race> races;
+    private List<Race> races;
             
-    public Collection<Race> getRacesFromJson() throws FileNotFoundException, IOException {
+    public List<Race> getRacesFromJson() throws FileNotFoundException, IOException {
         if (races == null) {
             races = dataImporter.getRacesFromJSON();
         }
