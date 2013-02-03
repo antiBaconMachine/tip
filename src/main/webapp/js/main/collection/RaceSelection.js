@@ -5,7 +5,7 @@ define(['jquery', 'underscore', 'backbone', 'util', 'model/Race'],
             //reference to the type of model object stored in collection
             model : Race,
         
-            initialize : function(match) {
+            initialize : function(models, match) {
                 if (!match || !match.id) {
                     throw "No match supplied for raceSelection";
                 }
@@ -13,15 +13,7 @@ define(['jquery', 'underscore', 'backbone', 'util', 'model/Race'],
             },
         
             url : function(){
-                return util.url() + "match/" + this.match.id + "/raceSelection"
-            },
-            
-            fetch : function() {
-                return [
-                    {id:1,name:"bar"},
-                    {id:2,name:"spam"},
-                    {id:3,name:"eggs"}
-                ]
+                return util.url() + "match/" + this.match.get("handle") + "/raceSelection"
             }
           
         });

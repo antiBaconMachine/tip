@@ -27,11 +27,8 @@ define(function(require) {
             var html = this.template({match : this.model});
             console.debug("rendering match element %o with html %s", this.insert, html);
             this.insert.html(html);
-            new PlayerView(this.insert.find("#raceSelection"), 
-                new Player({
-                    matchView : this,
-                    raceSelection : {}
-                })).render();
+            var player = new Player({}); 
+            new PlayerView(this.insert.find("#raceSelection"), player, this.model).render();
             return this;
         }
     });

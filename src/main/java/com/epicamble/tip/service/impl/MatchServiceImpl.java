@@ -1,5 +1,6 @@
 package com.epicamble.tip.service.impl;
 
+import com.epicamble.tip.model.Match;
 import com.epicamble.tip.model.Player;
 import com.epicamble.tip.model.Race;
 import com.epicamble.tip.repository.MatchRepository;
@@ -47,6 +48,20 @@ public class MatchServiceImpl implements MatchService {
         } else {
             return races;
         }
+    }
+
+    @Override
+    public Match findByHandle(String handle) {
+        //TODO: at the moment we just cast and use id
+        return matchRepository.findOne(Long.valueOf(handle));
+    }
+
+    @Override
+    public void addPlayer(Match match, Player player) {
+        //Convert decoded race into actual race entity
+        player.setRace(raceRepository.findOne(player.getRace().getId()));
+        match.getPlayers().add(player);
+        matchRepository.save(match);
     }
 
 }

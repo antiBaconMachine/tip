@@ -13,18 +13,21 @@ define(function(require) {
          
         template : _.template($(playerTemplate).html()),
         
-        initialize : function($listElement, model) {
+        initialize : function($listElement, model, match) {
             this.$listElement = $listElement;
             this.model =  model;
-            var matchModel = model.get("matchView").model;
-            this.bind("sync", matchModel.fetch, matchModel);
+            this.match = match;
+            this.bind("sync", match.fetch, match);
             _.bindAll(this);
         },
         
         render : function() {
-            //var races = new RaceSelection().fetch();
+            var races = new RaceSelection({},this.match);
+            races.fetch();
+            console.debug("rendering player with raceSelection %o, %o", races);
+            console.debug("rendering player with raceSelection %o, %o", races, _.pluck(races, "name"));
             var html = this.template({
-                races : [{id:1,name:"foo"},{id:2,name:"bar"}]
+                races : races
             });
             console.debug("rendering player with races html {}", html);
             this.$listElement.append(html);

@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="span3 sidebar">
-                <a href="/match">Create new match</a>
+                <a href="/match/create">Create new match</a>
 
                 <div id="login" >
                     <!--p>Login with one of the following providers:</p-->
