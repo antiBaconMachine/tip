@@ -1,5 +1,6 @@
 package com.epicamble.tip.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -14,7 +15,7 @@ public class Player extends AbstractEntity<Long> {
     private User user;
     private Race race;
     private String name;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Match match;
 
     public User getUser() {

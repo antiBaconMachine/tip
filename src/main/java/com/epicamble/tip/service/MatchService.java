@@ -13,7 +13,7 @@ public interface MatchService {
     
     public Match findByHandle(String handle);
     
-    public void addPlayer(Match match, Player player);
+    public Match addPlayer(Match match, Player player);
     
     public List<Race> getRaceSelection(String matchId); 
     

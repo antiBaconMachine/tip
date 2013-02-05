@@ -4,19 +4,23 @@ import com.epicamble.tip.model.Match;
 import com.epicamble.tip.model.Player;
 import com.epicamble.tip.model.Race;
 import com.epicamble.tip.repository.MatchRepository;
+import com.epicamble.tip.repository.PlayerRepository;
 import com.epicamble.tip.repository.RaceRepository;
 import com.epicamble.tip.service.MatchService;
 import java.util.*;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Ollie Edwards <ollie@codingcraft.co.uk>
  */
-@Component
+@Service
 public class MatchServiceImpl implements MatchService {
     
     Logger logger = LoggerFactory.getLogger(MatchServiceImpl.class);
@@ -25,6 +29,8 @@ public class MatchServiceImpl implements MatchService {
     private MatchRepository matchRepository;
     @Autowired
     private RaceRepository raceRepository;
+    @Autowired
+    private PlayerRepository playerRepository;
     
     /**
      * Return a random selection of 3 available races
@@ -57,11 +63,15 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public void addPlayer(Match match, Player player) {
+    @Transactional
+    public Match addPlayer(Match match, Player player) {
         //Convert decoded race into actual race entity
         player.setRace(raceRepository.findOne(player.getRace().getId()));
+        player.setMatch(match);
+        playerRepository.save(player);
         match.getPlayers().add(player);
-        matchRepository.save(match);
+        logger.debug("adding player {} to match {}", new Object[]{player,match});
+        return matchRepository.save(match);
     }
 
 }

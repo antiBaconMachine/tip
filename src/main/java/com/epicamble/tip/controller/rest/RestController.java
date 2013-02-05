@@ -47,9 +47,9 @@ public class RestController {
     }
     
     @RequestMapping(value="/match/{handle}/addPlayer", method = RequestMethod.POST)
-    public void addPlayer(@PathVariable String handle, @RequestBody Player player) {
+    public @ResponseBody Match addPlayer(@PathVariable String handle, @RequestBody Player player) {
         Match match = matchService.findByHandle(handle);
         logger.debug("Adding player {} to match {}", new Object[]{player,match});
-        matchService.addPlayer(match, player);
+        return matchService.addPlayer(match, player);
     }
 }
