@@ -9,6 +9,10 @@ function($, _, Backbone, util) {
         
         initialize : function() {
            
+        },
+        
+        url : function() {
+            return util.url() + "match/" + this.get("handle");
         }
     });
 });

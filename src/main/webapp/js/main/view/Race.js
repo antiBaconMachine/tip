@@ -16,8 +16,8 @@ define(['jquery', 'underscore', 'backbone', 'text!template/race.html!strip'],
             
             initialize : function(params) {
                 _.extend(this, params);
-                this.model.bind('sync', this.render, this);
-                this.model.bind('destroy', this.remove, this);
+//                this.model.bind('sync', this.render, this);
+//                this.model.bind('destroy', this.remove, this);
                 _.bindAll(this);
             },
            

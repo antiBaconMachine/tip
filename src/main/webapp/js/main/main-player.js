@@ -1,7 +1,7 @@
 requirejs.config({
     baseUrl : "/js/main/",
     paths : {
-        jquery: "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min",
+        jquery: "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery",//.min",
         underscoreSource: "lib/underscore", 
         backboneSource: "lib/backbone",
         underscore : "lib/underscoreWrapper",

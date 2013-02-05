@@ -19,13 +19,12 @@ define(function(require) {
             console.debug("init Match view %o", arguments);
             this.model = match;
             this.model.bind('sync', this.render, this);
-            this.model.bind('destroy', this.remove, this);
+//            this.model.bind('destroy', this.remove, this);
         },
         
         render : function() {
-            //var races = new RandomRaces().fetch();
             var html = this.template({match : this.model});
-            //console.debug("rendering match element %o with html %s", this.insert, html);
+            console.debug("rendering match element %o ", this.insert);
             this.insert.html(html);
             var player = new Player({}, this.model); 
             new PlayerView(this.insert.find("#raceSelection"), player, this.model).render();

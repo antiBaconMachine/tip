@@ -36,14 +36,19 @@ public class RestController {
         return raceService.findAll();
     }
     
-    @RequestMapping(value="/match/{matchId}/raceSelection", method = RequestMethod.GET)
-    public @ResponseBody List<Race> getRaceSelectionForMatch(@PathVariable String matchId) {
-        return matchService.getRaceSelection(matchId);
+    @RequestMapping(value="/match/{handle}", method = RequestMethod.GET)
+    public @ResponseBody Match getMatch(@PathVariable String handle) {
+        return matchService.findByHandle(handle);
     }
     
-    @RequestMapping(value="/match/{matchId}/addPlayer", method = RequestMethod.POST)
-    public void addPlayer(@PathVariable String matchId, @RequestBody Player player) {
-        Match match = matchService.findByHandle(matchId);
+    @RequestMapping(value="/match/{handle}/raceSelection", method = RequestMethod.GET)
+    public @ResponseBody List<Race> getRaceSelectionForMatch(@PathVariable String handle) {
+        return matchService.getRaceSelection(handle);
+    }
+    
+    @RequestMapping(value="/match/{handle}/addPlayer", method = RequestMethod.POST)
+    public void addPlayer(@PathVariable String handle, @RequestBody Player player) {
+        Match match = matchService.findByHandle(handle);
         logger.debug("Adding player {} to match {}", new Object[]{player,match});
         matchService.addPlayer(match, player);
     }
