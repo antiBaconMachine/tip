@@ -25,9 +25,9 @@ define(function(require) {
         render : function() {
             //var races = new RandomRaces().fetch();
             var html = this.template({match : this.model});
-            console.debug("rendering match element %o with html %s", this.insert, html);
+            //console.debug("rendering match element %o with html %s", this.insert, html);
             this.insert.html(html);
-            var player = new Player({}); 
+            var player = new Player({}, this.model); 
             new PlayerView(this.insert.find("#raceSelection"), player, this.model).render();
             return this;
         }

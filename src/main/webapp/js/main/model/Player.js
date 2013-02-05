@@ -3,13 +3,18 @@ function($, _, Backbone, util) {
     return Backbone.Model.extend({
         
         defaults : {
-            matchView   : null,
             name    : "",
             race    : null
         },
         
+        initialize : function(attributes, match) {
+            _.extend(this.attributes, attributes || {});
+            this.match = match;
+            this.bind("sync", match.fetch, match);
+        },
+        
         url : function() {
-            return util.url() + "/match/" + this.get("match").id + "/addPlayer"
+            return util.url() + "match/" + this.match.get("id") + "/addPlayer"
         }
     });
 });

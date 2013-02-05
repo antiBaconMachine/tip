@@ -293,6 +293,15 @@
                 <version>6.1.26</version>
                 <configuration>
                     <contextPath>/</contextPath>
+                    <Set name="initParams">
+                        <Map>
+                            <!--turn off all caching-->
+                            <Entry>
+                                <Item>cacheControl</Item>
+                                <Item>no-store,no-cache,must-revalidate</Item>
+                            </Entry>
+                        </Map>
+                    </Set>
                     <systemProperties>
                         <systemProperty>
                             <name>catalina.base</name>

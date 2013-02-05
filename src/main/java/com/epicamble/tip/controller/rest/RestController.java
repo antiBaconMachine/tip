@@ -6,6 +6,8 @@ import com.epicamble.tip.model.Race;
 import com.epicamble.tip.service.MatchService;
 import com.epicamble.tip.service.RaceService;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/rest")
 public class RestController {
     
+    private final static Logger logger = LoggerFactory.getLogger(RestController.class);
+    
     @Autowired
     private RaceService raceService;
     @Autowired
@@ -37,9 +41,10 @@ public class RestController {
         return matchService.getRaceSelection(matchId);
     }
     
-    @RequestMapping(value="/match/{matchId}/addPlayer", method = RequestMethod.PUT)
-    public @ResponseBody void addPlayer(@PathVariable String matchId, @RequestBody Player player) {
+    @RequestMapping(value="/match/{matchId}/addPlayer", method = RequestMethod.POST)
+    public void addPlayer(@PathVariable String matchId, @RequestBody Player player) {
         Match match = matchService.findByHandle(matchId);
+        logger.debug("Adding player {} to match {}", new Object[]{player,match});
         matchService.addPlayer(match, player);
     }
 }
